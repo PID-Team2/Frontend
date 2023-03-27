@@ -13,4 +13,12 @@ describe('SplitText function Test', ()=> {
         
         expect(splitText(paramsData)).toEqual(responseData);
     })
+
+    it('Should be return a empty array for a wrong input', ()=> {
+        expect(splitText(4)).toEqual([])
+        expect(splitText(45.1)).toEqual([])
+        expect(splitText(null)).toEqual([])
+        expect(splitText(undefined)).toEqual([])
+        expect(splitText({person: "casa"})).toEqual([])
+    })
 })
