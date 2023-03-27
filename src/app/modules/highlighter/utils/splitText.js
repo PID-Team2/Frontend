@@ -3,11 +3,13 @@
  * en cortar el string en palabras, conjuntos de espacios con fines de linea y 
  * otros caracteres independientes
  * 
- * @param texto String
- * 
+ * @param { String } texto
+ *  
  * @example
  * const res = splitText("const  casa = 'asa';");
  * console.log(res) // ["const","  ", "casa"," ","="," ","'","asa","'", ";"]
+ * 
+ * @returns {String []} responseData 
  */
 const splitText = (texto) => {
 
