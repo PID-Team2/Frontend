@@ -1,4 +1,4 @@
-import {splitText} from './'
+import {splitText} from './splitText'
 
 describe('SplitText function', ()=> {
 

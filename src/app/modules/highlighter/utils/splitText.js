@@ -1,11 +1,11 @@
-import { completeWord } from './'
+import { completeWord } from './completeWord'
 
 /**
  * Esta funcion recibe un { string } y devuelve un arreglo basado
  * en cortar el string en palabras, conjuntos de espacios con fines de linea y 
  * otros caracteres independientes
  * 
- * @param { String } texto
+ * @param { String } text
  *  
  * @example
  * const res = splitText("const  casa = 'asa';");
@@ -13,21 +13,38 @@ import { completeWord } from './'
  * 
  * @returns {String []} responseData 
  */
-export const splitText = (texto) => {
+ const splitText = (text) => {
 
-    if(!texto || typeof texto !== "string")
+    if(!text || typeof text !== "string")
         return [];
 
     let  responseData=[];
     let  regexLetters = /[a-zA-Z]/g; 
+    let  regexSpacesAndEndLines = /\s|\n/g;
 
-    console.log((texto.match(regexLetters)));
-    for(let i=0 ; i < texto.length; i++){
-      console.log(texto[i].match(regexLetters));
+    console.log((text.match(regexLetters)));
+    
+    for(let i=0 ; i < text.length; i++){
+      let response;
+      if(text[i].match(regexLetters)){
+        response = completeWord(text, i,  regexLetters);
+        responseData = [ ...responseData, response.word];
+        i = response.index;
+        continue;
+      }
+
+      if(text[i].match(regexSpacesAndEndLines)){
+        response = completeWord(text, i,  regexSpacesAndEndLines);
+        responseData = [ ...responseData, response.word];
+        i = response.index;
+        continue;
+      }
+
+      responseData = [...responseData, text[i]];
     }
 
     return responseData;
 }
 
 
-// splitText("cas aSd;ca\nad");
+splitText("cas aSd;ca\nad");
