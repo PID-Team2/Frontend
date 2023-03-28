@@ -12,10 +12,14 @@ describe('SplitText function', ()=> {
         let responseData = ["const"," ","casa"];
         expect(splitText(paramsData)).toEqual(responseData);
 
-        // paramsData = `const   casa = "Casita";`;
-        // responseData = ["const", "   ", "casa", " ", "=", "\"", "Casita","\"", ";"];
+        paramsData = `const   casa = "Casita";`;
+        responseData = ["const", "   ", "casa", " ", "="," ", "\"", "Casita","\"", ";"];
         
-        // expect(splitText(paramsData)).toEqual(responseData);
+        expect(splitText(paramsData)).toEqual(responseData);
+
+        paramsData =`let myFunction = () => { return true;}`
+        responseData =["let", " ","myFunction", " ", "=", " ", "(", ")", " ", "=", ">", " ", "{", " ", "return", " ", "true", ";", "}" ]
+        expect(splitText(paramsData)).toEqual(responseData);
     })
 
     it('Should be return a empty array for a wrong input', ()=> {
