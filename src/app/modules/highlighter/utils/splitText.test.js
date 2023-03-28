@@ -1,6 +1,10 @@
 import {splitText} from './'
 
-describe('SplitText function Test', ()=> {
+describe('SplitText function', ()=> {
+
+    it('should expose a function', () => {
+		expect(splitText).toBeDefined();
+	});
 
     it('Should be return a array of words from text params', ()=>{
 
