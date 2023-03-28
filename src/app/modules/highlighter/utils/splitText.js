@@ -13,7 +13,7 @@ import { completeWord } from './completeWord'
  * 
  * @returns {String []} responseData 
  */
- const splitText = (text) => {
+ export const splitText = (text) => {
 
     if(!text || typeof text !== "string")
         return [];
@@ -22,18 +22,23 @@ import { completeWord } from './completeWord'
     let  regexLetters = /[a-zA-Z]/g; 
     let  regexSpacesAndEndLines = /\s|\n/g;
 
+    console.log(completeWord("const casa", 0, /[a-zA-Z]/g));
     console.log((text.match(regexLetters)));
     
     for(let i=0 ; i < text.length; i++){
       let response;
+
+      console.log("indice:"+i);
       if(text[i].match(regexLetters)){
-        response = completeWord(text, i,  regexLetters);
+        console.log("Complete word on splittext:"+completeWord(text, i,  regexLetters));
+        response = completeWord(text, i, regexLetters);
         responseData = [ ...responseData, response.word];
         i = response.index;
         continue;
       }
 
       if(text[i].match(regexSpacesAndEndLines)){
+        console.log("Complete word on splittext:"+completeWord(text, i,  regexSpacesAndEndLines));
         response = completeWord(text, i,  regexSpacesAndEndLines);
         responseData = [ ...responseData, response.word];
         i = response.index;
@@ -47,4 +52,4 @@ import { completeWord } from './completeWord'
 }
 
 
-splitText("cas aSd;ca\nad");
+// splitText("cas aSd;ca\nad");

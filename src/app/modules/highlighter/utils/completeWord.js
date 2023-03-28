@@ -16,7 +16,7 @@ export const completeWord = (text , index, pattern) => {
     let word = '';
     let matcherCharacters = [];
 
-    if(!text || !index || !pattern)
+    if(!text || !pattern)
         return null;
     
     if(typeof text !== "string" || typeof index !== "number" || !(pattern instanceof RegExp))
