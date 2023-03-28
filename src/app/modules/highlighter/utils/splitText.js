@@ -1,3 +1,5 @@
+import { completeWord } from './'
+
 /**
  * Esta funcion recibe un { string } y devuelve un arreglo basado
  * en cortar el string en palabras, conjuntos de espacios con fines de linea y 
@@ -11,7 +13,7 @@
  * 
  * @returns {String []} responseData 
  */
-const splitText = (texto) => {
+export const splitText = (texto) => {
 
     if(!texto || typeof texto !== "string")
         return [];
@@ -28,4 +30,4 @@ const splitText = (texto) => {
 }
 
 
-splitText("cas aSd;ca\nad");
+// splitText("cas aSd;ca\nad");

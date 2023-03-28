@@ -9,7 +9,7 @@
  * @param {RegExp} pattern 
  * 
  * @example
- * const res = completeWords(" asd ds", 1, /[a-zA-Z]/g);
+ * const res = completeWord(" asd ds", 1, /[a-zA-Z]/g);
  * console.log(res) // { word : "asd", index: 3} 
  */
 export const completeWord = (text , index, pattern) => {
