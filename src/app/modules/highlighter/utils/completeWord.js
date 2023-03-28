@@ -38,5 +38,3 @@ export const completeWord = (text , index, pattern) => {
     index--;
     return {word , index}
 }
-
-// console.log(completeWord(" asd ds", 1, /[a-zA-Z]/g));

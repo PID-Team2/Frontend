@@ -22,13 +22,9 @@ import { completeWord } from './completeWord'
     let  regexLetters = /[a-zA-Z]/g; 
     let  regexSpacesAndEndLines = /\s|\n/g;
 
-    // console.log(completeWord("const casa", 0, /[a-zA-Z]/g));
-    // console.log((text.match(regexLetters)));
-    
     for(let i=0 ; i < text.length; i++){
       let response;
 
-      // console.log("indice:"+i);
       if(text[i].match(regexLetters)){
   
         response = completeWord(text, i, regexLetters);
@@ -49,6 +45,3 @@ import { completeWord } from './completeWord'
 
     return responseData;
 }
-
-
-// splitText("cas aSd;ca\nad");
