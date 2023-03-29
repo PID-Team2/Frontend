@@ -4,6 +4,12 @@
  * 
  * @param {[] String} arr 
  * @param {String} word 
+ * @example 
+ * let res = containTo(["casa", "dog"], "dog");
+ * console.log(res) // true
+ * 
+ * res = containTo(["casa", "dog"], "cat");
+ * console.loglog(res) // false
  */
 export const containTo = (arr = [''], word = '' ) => {
     
