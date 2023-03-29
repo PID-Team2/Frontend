@@ -1,6 +1,23 @@
 import { clasifications } from "../models/clasifications";
 import { containTo } from '../utils'
 
+/**
+ * @description
+ * Al pasarle un { string } devuelve un objeto clasificando
+ * el string y comprobando errores
+ * 
+ * @param {String} word 
+ * @example
+ * 
+ * let result = clasifier("const");
+ * console.log(result)
+ * // {  word : 'const', clasification : 'declarations',error : false }
+ * 
+ *  let result = clasifier(4);
+ * console.log(result)
+ * //{ word : '',clasification : '', error : true}
+ * 
+ */
 export const clasifier = (word) => {
 
     const clasificationsTypes = clasifications();
