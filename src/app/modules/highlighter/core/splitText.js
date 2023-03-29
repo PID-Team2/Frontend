@@ -13,7 +13,7 @@ import { completeWord } from './completeWord'
  * 
  * @returns {String []} responseData 
  */
- export const splitText = (text) => {
+ export const splitText = (text) => { 
 
     if(!text || typeof text !== "string")
         return [];
