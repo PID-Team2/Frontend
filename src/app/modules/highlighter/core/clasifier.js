@@ -1,5 +1,9 @@
+import { clasifications } from "../models/clasifications";
+
 export const clasifier = (word) => {
 
+    const clasificationsTypes = clasifications();
+    
     let result  = {
         word : '',
         clasification : '',
