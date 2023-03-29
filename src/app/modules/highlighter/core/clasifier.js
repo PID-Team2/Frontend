@@ -14,5 +14,7 @@ export const clasifier = (word) => {
         return result;
 
     
+
+    
     return result;
 }
