@@ -2,8 +2,8 @@
  * @description Permite saber si dentro de un arreglo de strings
  * se encuentra un string en especifico
  * 
- * @param {[] String} arr 
- * @param {String} word 
+ * @param {} arr 
+ * @param {} word 
  * @example 
  * let res = containTo(["casa", "dog"], "dog");
  * console.log(res) // true
