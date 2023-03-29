@@ -44,27 +44,27 @@ describe('clasifier', () => {
     });
       expect(clasifier("=")).toStrictEqual({
         word : "=",
-        clasification : 'chars',
+        clasification : 'char',
         error : false
     });
       expect(clasifier(";")).toStrictEqual({
         word : ";",
-        clasification : 'chars',
+        clasification : 'char',
         error : false
     });
       expect(clasifier(":")).toStrictEqual({
         word : ":",
-        clasification : 'chars',
+        clasification : 'char',
         error : false
     });
       expect(clasifier("\"")).toStrictEqual({
         word : "\"",
-        clasification : 'strings',
+        clasification : 'string',
         error : false
     });
       expect(clasifier("'")).toStrictEqual({
         word : "'",
-        clasification : 'strings',
+        clasification : 'string',
         error : false
     });
     
