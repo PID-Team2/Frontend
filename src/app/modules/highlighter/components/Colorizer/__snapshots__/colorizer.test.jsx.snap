@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Colorizer> should render component 1`] = `
+<DocumentFragment>
+  <pre
+    class="hlg_declarations"
+  >
+    const
+  </pre>
+</DocumentFragment>
+`;

@@ -1,9 +1,9 @@
 function Colorizer({languageElement}) {
 
-  const { word, classification, error} = languageElement;
+  const { word,clasification, error} = languageElement;
 
   return (
-    <pre className={"hlg_"+classification}>{error ? "Error!" : word}</pre>
+    <pre className={"hlg_"+clasification}>{error ? "Error!" : word}</pre>
   )
 }
 export default Colorizer
