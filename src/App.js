@@ -1,14 +1,28 @@
 import React from 'react';
-import Home from './pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+// pages
+import HomePage from './pages/Home';
+import Example from './pages/Example';
+import NotFound from './pages/NotFound';
+import LoginView from './app/modules/auth/views/LoginView';
+
+//components
+import Navbar from "../src/common/components/Navar";
 
 function App() {
   return (
-    <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Home/>}/>
-          </Routes>
-    </BrowserRouter>
+    <div className='h-screen'>
+      <BrowserRouter>
+      <Navbar/>
+            <Routes>
+              <Route path='/' element={<HomePage/>}/>
+              <Route path='/example' element={<Example/>}/>
+              <Route path='/auth/login' element={<LoginView/>}/>
+              <Route path='*' element={<NotFound />}/>
+            </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
