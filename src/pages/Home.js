@@ -4,12 +4,12 @@ import React from 'react';
 import '../common/assets/styles/home.css';
 
 // components
-import Home from '../common/components/Home';
+import HomeBanner from '../common/components/HomeBanner';
 
 function HomePage() {
   return (
     <div className='h-screen bg-zinc-850'>
-      <Home/>
+      <HomeBanner/>
     </div>
   );
 }

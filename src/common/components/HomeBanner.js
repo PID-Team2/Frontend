@@ -1,7 +1,7 @@
 import React from 'react';
 import Typewriter from "typewriter-effect";
 
-function Home() {
+function HomeBanner() {
   const wordsToWrite = [
     'Search for solutions',
     'Consult the opinion of experts',
@@ -35,4 +35,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeBanner;
