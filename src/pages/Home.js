@@ -1,7 +1,7 @@
 import React from 'react';
 
 // styles
-import '../common/assets/styles/home.css';
+import '../common/styles/home.css';
 
 // components
 import HomeBanner from '../common/components/HomeBanner';
