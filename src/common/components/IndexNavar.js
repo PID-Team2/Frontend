@@ -101,14 +101,15 @@ export default function Navbar() {
             </Transition>
           </Popover>
 
-          <Link to="/" className="text-sm font-semibold leading-6 ">
-            Features
-          </Link>
+          
           <Link to="/" className="text-sm font-semibold leading-6 ">
             Module
           </Link>
-          <Link to="/" className="text-sm font-semibold leading-6 ">
+          <Link to="/games" className="text-sm font-semibold leading-6 ">
             Games
+          </Link>
+          <Link to="/example" className="text-sm font-semibold leading-6 ">
+            Example Store
           </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">

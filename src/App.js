@@ -5,21 +5,33 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home';
 import Example from './pages/Example';
 import NotFound from './pages/NotFound';
+import GamePage from './app/modules/codeGame/views/GamePage';
 import LoginView from './app/modules/auth/views/LoginView';
 
-//components
-import Navbar from "../src/common/components/Navar";
+
+//layouts
+import Auth from './common/layouts/auth';
+import Index from './common/layouts';
 
 function App() {
   return (
     <div className='h-screen'>
       <BrowserRouter>
-      <Navbar/>
             <Routes>
-              <Route path='/' element={<HomePage/>}/>
-              <Route path='/example' element={<Example/>}/>
-              <Route path='/auth/login' element={<LoginView/>}/>
-              <Route path='/auth/register' element={<LoginView/>}/>
+
+              {/** Routes with layouts */}
+              <Route  element={<Index/>}> 
+                <Route path='/' element={<HomePage/>}/>
+                <Route path='/example' element={<Example/>}/>
+                <Route path='/games' element={<GamePage/>}/>
+              </Route>
+
+              <Route  element={<Auth/>}>
+                <Route path='/auth/login' element={<LoginView/>}/>
+                <Route path='/auth/register' element={<LoginView/>}/>
+              </Route>
+
+              {/** Page 404 */}
               <Route path='*' element={<NotFound />}/>
             </Routes>
       </BrowserRouter>

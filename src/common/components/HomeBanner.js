@@ -13,7 +13,7 @@ function HomeBanner() {
       <div className='home h-5/6 bg-fixed bg-no-repeat bg-center text-white flex justify-center items-center z-0'>
         <header className="m-0 flex flex-column justify-center">
           <div className='home-title absolute top-60 flex justify-center left-1/6 w-5/6 mx-3xl  z-0'>
-            <h1 className='text-6xl text-center max-w-50 z-0'>
+            <h1 className='text-3xl md:text-4xl lg:text-6xl text-center max-w-50 z-0'>
               <Typewriter
                 options={{
                   strings: wordsToWrite,
