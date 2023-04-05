@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap');
 body {
   margin: 0;
-  background-color: aqua;
+  background-color: rgb(40, 39, 39);
   font-family: 'Fira Code', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

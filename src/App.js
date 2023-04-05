@@ -19,6 +19,7 @@ function App() {
               <Route path='/' element={<HomePage/>}/>
               <Route path='/example' element={<Example/>}/>
               <Route path='/auth/login' element={<LoginView/>}/>
+              <Route path='/auth/register' element={<LoginView/>}/>
               <Route path='*' element={<NotFound />}/>
             </Routes>
       </BrowserRouter>
