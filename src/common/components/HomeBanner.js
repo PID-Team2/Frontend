@@ -1,6 +1,6 @@
 import React from 'react';
 import Typewriter from "typewriter-effect";
-
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 function HomeBanner() {
   const wordsToWrite = [
     'Search for solutions',
@@ -26,6 +26,9 @@ function HomeBanner() {
           </div>
           <div className="flex justify-center mt-60">
             <button className='rounded-lg bg-amber-400 px-4 py-3 text-md font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600'>Get Started</button>
+          </div>
+          <div className="flex absolute bottom-24  justify-center">
+              <button className="rounded-full bg-white py-2 px-4"><span className="text-zinc-850 font-bold text-xl" aria-hidden="true">&darr;</span></button>
           </div>
         </header>
       </div>
