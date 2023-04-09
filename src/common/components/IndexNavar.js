@@ -8,6 +8,8 @@ import {
   FingerPrintIcon,
   SquaresPlusIcon,
   XMarkIcon,
+  CalendarDaysIcon,
+  ArrowPathRoundedSquareIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
@@ -17,6 +19,11 @@ const products = [
   { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
   { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
   { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+]
+const  modules = [
+  { name: 'Tracing', description: 'Follow-ups to the defined elements...', href: '#', icon: ArrowPathRoundedSquareIcon },
+  { name: 'Planning', description: 'Speak directly to your customers', href: '#', icon: CalendarDaysIcon },
+
 ]
 const callsToAction = [
   { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
@@ -100,11 +107,46 @@ export default function Navbar() {
               </Popover.Panel>
             </Transition>
           </Popover>
+          <Popover className="relative">
+            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6">
+              Module
+              <ChevronDownIcon className="h-5 w-5 flex-none" aria-hidden="true" />
+            </Popover.Button>
+            <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+            >
+              <Popover.Panel className="absolute -left-8 top-full mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-zinc-850 shadow-lg ring-1 ring-gray-900/5">
+                <div className="p-4">
+                  {modules.map((item) => (
+                      <div
+                          key={item.name}
+                          className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-neutral-800"
+                      >
+                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg  group-hover:bg-neutral-700">
+                          <item.icon className="h-6 w-6 text-gray-400 group-hover:text-amber-400" aria-hidden="true" />
+                        </div>
+                        <div className="flex-auto">
+                          <Link to={item.href} className="block font-semibold text-gray-100">
+                            {item.name}
+                            <span className="absolute inset-0" />
+                          </Link>
+                          <p className="mt-1 text-gray-400">{item.description}</p>
+                        </div>
+                      </div>
+                  ))}
+                </div>
 
-          
-          <Link to="/" className="text-sm font-semibold leading-6 ">
-            Module
-          </Link>
+              </Popover.Panel>
+
+            </Transition>
+          </Popover>
+
           <Link to="/games" className="text-sm font-semibold leading-6 ">
             Games
           </Link>
