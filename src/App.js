@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // pages
 import HomePage from './pages/Home';
-import Example from './pages/Example';
+import Example from './app/modules/exampleModule/views/Example';
 import NotFound from './pages/NotFound';
 import GamePage from './app/modules/codeGame/views/GamePage';
 import LoginView from './app/modules/auth/views/LoginView';
@@ -18,7 +18,6 @@ function App() {
     <div className='h-screen'>
       <BrowserRouter>
             <Routes>
-
               {/** Routes with layouts */}
               <Route  element={<Index/>}> 
                 <Route path='/' element={<HomePage/>}/>
