@@ -7,6 +7,7 @@ import Example from './pages/Example';
 import NotFound from './pages/NotFound';
 import GamePage from './app/modules/codeGame/views/GamePage';
 import LoginView from './app/modules/auth/views/LoginView';
+import Tracing from './app/modules/tracing-rating/project';
 
 
 //layouts
@@ -24,6 +25,7 @@ function App() {
                 <Route path='/' element={<HomePage/>}/>
                 <Route path='/example' element={<Example/>}/>
                 <Route path='/games' element={<GamePage/>}/>
+                  <Route path='/tracing-project' element={<Tracing/>}/>
               </Route>
 
               <Route  element={<Auth/>}>

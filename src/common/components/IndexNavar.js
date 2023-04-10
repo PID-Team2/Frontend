@@ -21,8 +21,8 @@ const products = [
   { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
 ]
 const  modules = [
-  { name: 'Tracing', description: 'Follow-ups to the defined elements...', href: '#', icon: ArrowPathRoundedSquareIcon },
-  { name: 'Planning', description: 'Speak directly to your customers', href: '#', icon: CalendarDaysIcon },
+  { name: 'Tracing', description: 'Follow-ups to the defined elements...', href: 'tracing-project', icon: ArrowPathRoundedSquareIcon },
+
 
 ]
 const callsToAction = [
