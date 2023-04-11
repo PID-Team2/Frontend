@@ -7,18 +7,31 @@ import {useState} from "react";
 export default function Project() {
 
     const [search,setSearch] = useState();
-    const [advanced,setAdvanced] = useState(false);
+    const [Avanzar,setAvanzar] = useState(false);
+    const [Materias,setMaterias] = useState();
+    const [Autor,setAutor] = useState();
+    const [Facultad,setFacultad] = useState();
 
     const optionsMaterias = [
-        {value:1, label:'Matematica'},
-        {value:2, label:'Ingeneria de Software'},
-        {value:3, label:'Programacion'},
+        {value:1, label:'RSI'},
+        {value:2, label:'ISW'},
+        {value:3, label:'PW'},
         {value:4, label:'IA'},
-        {value:5, label:'PE'}
+        {value:5, label:'PE'},
+        {value:6, label: 'GPN'},
+        {value:7, label: 'BD'}
+    ]
+    const optionsFacultad = [
+        {value:1, label:'Facultad 1'},
+        {value:2, label:'Facultad 2'},
+        {value:3, label:'Facultad 3'},
+        {value:4, label:'Facultad 4'},
+        {value:5, label:'FTE'},
+        {value:6, label: 'CITEC'},
     ]
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(advanced);
+        console.log(Avanzar);
         return
     }
      return(
@@ -33,20 +46,20 @@ export default function Project() {
 
                                          <input
                                              className="text-black rounded w-full"
-                                             type="text" placeholder="Search here..."
+                                             type="text" placeholder="Search..."
                                              value={search}
                                              onChange={event=>setSearch(event.target.value)}
                                          />
 
                                          <div className="flex mt-4" >
-                                             <label className="mr-2 ">Advanced</label>
+                                             <label className="mr-2 ">Avanzar</label>
                                              <input type="checkbox"
-                                                        checked={advanced}
-                                                    onChange={event=>setAdvanced(!advanced)}
+                                                        checked={Avanzar}
+                                                    onChange={event=>setAvanzar(!Avanzar)}
                                              />
                                          </div>
 
-                                     {advanced &&
+                                     {Avanzar &&
                                          <div className="flex  mt-4 text-black gap-2">
                                              <div className="w-1/2">
                                                  <label form="material" className="text-white">Materias:</label>
@@ -55,19 +68,29 @@ export default function Project() {
                                                          <option value={option.value}>{option.label}</option>
                                                      ))}
                                                  </select>
-                                             </div>
-                                             <div className="w-1/2">
-                                                 <label form="author" className="text-white">Author:</label>
+                                             </div> <div className="w-1/2 ">
+                                                 <label form="facultad" className="text-white">Facultad:</label>
+                                                 <select className="text-black w-full rounded" >
+                                                     {optionsFacultad.map((option) => (
+                                                         <option value={option.value}>{option.label}</option>
+                                                     ))}
+                                                 </select>
+                                             <div >
+                                                 <label form="author" className="text-white ">Autor:</label>
                                                  <input
-                                                     className="text-black rounded w-full"
-                                                     type="text" placeholder="Search here..."
-                                                     value={search}
-                                                     onChange={event=>setSearch(event.target.value)}
-                                                 />
+                                                     className="text-black  rounded  w-full "
+                                                     type="text" placeholder="Search..."
+                                                     value={Autor}
+                                                     onChange={event=>setAutor(event.target.value)}
+                                                 /> 
+                                                
+                                             </div>
                                              </div>
                                          </div>
 
-                                     }
+                                                     }
+                                    
+                                     
 
 
 
