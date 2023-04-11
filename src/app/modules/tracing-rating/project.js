@@ -1,16 +1,19 @@
 
 import {LockClosedIcon} from "@heroicons/react/20/solid";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 
 export default function Project() {
 
     const [search,setSearch] = useState();
-    const [Avanzar,setAvanzar] = useState(false);
-    const [Materias,setMaterias] = useState();
-    const [Autor,setAutor] = useState();
-    const [Facultad,setFacultad] = useState();
+    const [avanzar,setAvanzar] = useState(false);
+    const [materias,setMaterias] = useState();
+    const [autor,setAutor] = useState();
+    const [facultad,setFacultad] = useState();
+
+    const navigate = useNavigate();
 
     const optionsMaterias = [
         {value:1, label:'RSI'},
@@ -31,14 +34,14 @@ export default function Project() {
     ]
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(Avanzar);
+        navigate('/list-questions');
         return
     }
      return(
          <>
              <main className="grid h-screen bg-zinc-800 text-white px-6 py-24 sm:py-32 lg:px-8">
                  <div className="flex content-center items-center justify-center h-full">
-                     <div className="w-full lg:w-4/12 px-4">
+                     <div className="w-full lg:w-4/5 px-4">
                          <div className="backdrop-blur-md relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0">
                              <div className="flex-auto px-4 lg:px-10 py-10">
 
@@ -52,39 +55,41 @@ export default function Project() {
                                          />
 
                                          <div className="flex mt-4" >
-                                             <label className="mr-2 ">Avanzar</label>
+                                             <label className="mr-2 ">avanzar</label>
                                              <input type="checkbox"
-                                                        checked={Avanzar}
-                                                    onChange={event=>setAvanzar(!Avanzar)}
+                                                        checked={avanzar}
+                                                    onChange={event=>setAvanzar(!avanzar)}
                                              />
                                          </div>
 
-                                     {Avanzar &&
+                                     {avanzar &&
                                          <div className="flex  mt-4 text-black gap-2">
-                                             <div className="w-1/2">
+                                             <div className="w-1/4">
                                                  <label form="material" className="text-white">Materias:</label>
                                                  <select className="text-black w-full rounded" >
                                                      {optionsMaterias.map((option) => (
                                                          <option value={option.value}>{option.label}</option>
                                                      ))}
                                                  </select>
-                                             </div> <div className="w-1/2 ">
+                                             </div>
+                                             <div className="w-1/4">
                                                  <label form="facultad" className="text-white">Facultad:</label>
                                                  <select className="text-black w-full rounded" >
                                                      {optionsFacultad.map((option) => (
                                                          <option value={option.value}>{option.label}</option>
                                                      ))}
                                                  </select>
-                                             <div >
+                                             </div>
+                                             <div className="w-1/2">
                                                  <label form="author" className="text-white ">Autor:</label>
                                                  <input
                                                      className="text-black  rounded  w-full "
                                                      type="text" placeholder="Search..."
-                                                     value={Autor}
+                                                     value={autor}
                                                      onChange={event=>setAutor(event.target.value)}
-                                                 /> 
-                                                
-                                             </div>
+                                                 />
+
+
                                              </div>
                                          </div>
 

@@ -8,7 +8,8 @@ import NotFound from './pages/NotFound';
 import GamePage from './app/modules/codeGame/views/GamePage';
 import LoginView from './app/modules/auth/views/LoginView';
 import Tracing from './app/modules/tracing-rating/project';
-
+import Questions from './app/modules/tracing-rating/Questions';
+import Answer from './app/modules/tracing-rating/Answers';
 
 //layouts
 import Auth from './common/layouts/auth';
@@ -25,7 +26,10 @@ function App() {
                 <Route path='/' element={<HomePage/>}/>
                 <Route path='/example' element={<Example/>}/>
                 <Route path='/games' element={<GamePage/>}/>
-                  <Route path='/tracing-project' element={<Tracing/>}/>
+                <Route path='/tracing-project' element={<Tracing/>}/>
+                  <Route path='/list-questions' element={<Questions/>}/>
+                  <Route path='/answare' element={<Answer/>}/>
+
               </Route>
 
               <Route  element={<Auth/>}>
