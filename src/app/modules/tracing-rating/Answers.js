@@ -5,8 +5,8 @@ export default  function Questions() {
 
     const answer = [
         {id:1,value:"Comando 1 es verde",user:'Reyder',createdAt:'12/01/2023'},
-        {id:1,value:"Comando 2 es azul",user:'Rolando',createdAt:'17/01/2023'},
-        {id:1,value:"Comando 3 es rojo",user:'Roberto',createdAt:'17/01/2023'}
+        {id:2,value:"Comando 2 es azul",user:'Rolando',createdAt:'17/01/2023'},
+        {id:3,value:"Comando 3 es rojo",user:'Roberto',createdAt:'17/01/2023'}
     ]
 
 
@@ -23,7 +23,7 @@ export default  function Questions() {
                                 <div className="mt-10">Respuestas:</div>
                                 {answer.map(v=>(
                                     <div className="flex m-4">
-                                        <div className="w-1/12 border-r-2 text-end pr-4">
+                                        <div className="lg:w-1/8 md:w-1/6  border-r-2 text-end pr-4">
                                             {v.user}
                                         </div>
                                         <p className="w-1/2 px-4 mr-5">
