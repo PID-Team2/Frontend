@@ -3,6 +3,7 @@ import { Outlet} from "react-router-dom";
 
 // components
 import Navbar from "../components/IndexNavar";
+import Footer from "../components/Footer";
 
 export default function Index() {
   return (
@@ -11,6 +12,7 @@ export default function Index() {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 }

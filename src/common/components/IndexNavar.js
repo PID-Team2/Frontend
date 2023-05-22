@@ -34,9 +34,9 @@ export default function Navbar() {
     <header className="bg-zinc-850 fixed w-full top-0 text-gray-100 z-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link to="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+          <Link to="/" className="-m-1.5 p-1.5 flex items-center">
+            <img className="h-8 w-auto mr-4" src="https://tailwindui.com/img/logos/mark.svg?color=amber&shade=400" alt="" />
+            <span className="h-8 w-auto" >CodeBrackets</span>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -100,16 +100,15 @@ export default function Navbar() {
               </Popover.Panel>
             </Transition>
           </Popover>
-
-          
-          <Link to="/" className="text-sm font-semibold leading-6 ">
-            Module
+         
+          <Link to="/example" className="text-sm font-semibold leading-6 ">
+            Example Store
+          </Link>
+          <Link to="/groups" className="text-sm font-semibold leading-6 ">
+            Grops Managment
           </Link>
           <Link to="/games" className="text-sm font-semibold leading-6 ">
             Games
-          </Link>
-          <Link to="/example" className="text-sm font-semibold leading-6 ">
-            Example Store
           </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -168,19 +167,19 @@ export default function Navbar() {
                   )}
                 </Disclosure>
                 <Link
-                  to="/"
+                  to="/example"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
                 >
-                  Features
+                  Example Module
                 </Link>
                 <Link
-                  to="/"
+                  to="/groups"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
                 >
-                  Marketplace
+                  Groups Managment
                 </Link>
                 <Link
-                  to="/"
+                  to="/games"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
                 >
                   Games
@@ -188,7 +187,7 @@ export default function Navbar() {
               </div>
               <div className="py-6">
                 <Link
-                  to="/"
+                  to="/auth/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
                 >
                   Log in

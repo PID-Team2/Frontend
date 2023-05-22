@@ -1,0 +1,32 @@
+.main {
+    background-image: url('../images/team-work.jpg');
+    background-size: cover;
+    font-family: 'Fira Code', monospace;
+    backdrop-filter: blur(15px);
+}
+
+.side-bar::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.side-bar::-webkit-scrollbar:vertical {
+    width:8px;
+}
+
+.side-bar::-webkit-scrollbar-button:increment,.side-bar::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.side-bar::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.side-bar::-webkit-scrollbar-thumb {
+    background-color: #a8a7a722;
+    border-radius: 20px;
+    border: 1px solid #a8a7a722;
+}
+
+.side-bar::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
