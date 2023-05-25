@@ -8,9 +8,16 @@ import {
   FingerPrintIcon,
   SquaresPlusIcon,
   XMarkIcon,
+  UserCircleIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
+import AccountDropdown from './AccountDropdown'
+
+import { useSelector, useDispatch } from "react-redux";
+
+import { logout, selectAuth } from '../../app/modules/auth/authSlice'
+
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
   { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
@@ -30,13 +37,21 @@ function classNames(...classes) {
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const authData = useSelector(selectAuth);
+
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logout())
+  }
+
   return (
     <header className="bg-zinc-850 fixed w-full top-0 text-gray-100 z-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center">
             <img className="h-8 w-auto mr-4" src="https://tailwindui.com/img/logos/mark.svg?color=amber&shade=400" alt="" />
-            <span className="h-8 w-auto" >CodeBrackets</span>
+            <span className="h-8 w-auto">CodeBrackets</span>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -100,7 +115,7 @@ export default function Navbar() {
               </Popover.Panel>
             </Transition>
           </Popover>
-         
+
           <Link to="/example" className="text-sm font-semibold leading-6 ">
             Example Store
           </Link>
@@ -112,9 +127,13 @@ export default function Navbar() {
           </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/auth/login" className="text-sm font-semibold leading-6 ">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {authData.user
+             ? <AccountDropdown username={authData.user.username} onLogout={handleLogOut}/>
+             
+             : <Link to="/auth/login" className="text-sm font-semibold leading-6 ">
+                Log in <span aria-hidden="true">&rarr;</span>
+              </Link>
+            }
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden bg-zinc-850" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -186,12 +205,20 @@ export default function Navbar() {
                 </Link>
               </div>
               <div className="py-6">
-                <Link
-                  to="/auth/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
-                >
-                  Log in
-                </Link>
+                {authData.user 
+                  ? <div>
+                    <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800 flex align-center"><UserCircleIcon className="h-6 w-6 mr-1" aria-hidden="true" />{authData.user.username}</span>
+                    <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800 flex align-center">Account settings</span>
+                    <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800 flex align-center" onClick={handleLogOut}>Sign out</span>
+                  </div>
+                  : <Link
+                      to="/auth/login"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
+                    >
+                      Log in
+                    </Link>
+                }
+
               </div>
             </div>
           </div>

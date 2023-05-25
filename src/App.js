@@ -23,6 +23,7 @@ import Index from './common/layouts';
 
 import GroupsLayout from './app/modules/groupsManagment/layouts';
 import GroupsManagmentLayout from './app/modules/groupsManagment/layouts/managment';
+
 function App() {
   return (
     <div className='h-screen'>

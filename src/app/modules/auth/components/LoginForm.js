@@ -1,15 +1,21 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 // componets
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom"
+
+import { signInOrSignUp, selectAuth } from "../authSlice";
 
 export default function LoginForm() {
     const [login, setLogin] = useState({ email: '', password: '', username: '' });
     const [errorMessages, setErrorMessages] = useState({ email: '', password: '', username: '' });
     const navigate = useNavigate()
     const location = useLocation();
+    const dispatch = useDispatch();
+    const authData = useSelector(selectAuth);
+    const [isFirstRender, setIsFirstRender] = useState(true);
 
     const handleChange = (e) => {
         setLogin({
@@ -22,51 +28,88 @@ export default function LoginForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(login)
         const isValid = validate()
-        
-        if(isValid) navigate('/')
-        
+
+        if (isValid) {
+            dispatch(signInOrSignUp(login))
+        }
+
         return
     }
-    const validate = () =>{
-        const {email, username, password} = login
+    const resetForm = () =>{
+        setLogin({ email: '', password: '', username: '' })
+    }
+    useEffect(() => {
+        console.log("asddfg");
+        if (isFirstRender) {
+            setIsFirstRender(false);
+            return;
+        }
+        console.log("asd");
+        // Observar cambios en authData.hasError
+        if (authData.hasError) {
+          // Realizar acciones cuando authData.hasError se actualice
+          console.log("Error de autenticación:", authData.hasError);
+        } else {
+          // Realizar acciones cuando authData.hasError se actualice a false
+          console.log("La acción de inicio de sesión se completó con éxito.");
+          if (isRegister) {
+            setLogin({
+                ...login,
+                email: ''
+            })
+            navigate('/auth/login')
+          }
+            else navigate('/')
+        }
+    }, [authData.hasError, authData.user]);
 
-        if(isRegister){
-            if(username.length<3){
+    const validate = () => {
+        const { email, username, password } = login
+
+        if (isRegister) {
+            if (!email) {
                 setErrorMessages({
                     ...errorMessages,
-                    username: 'At least 3 characters'
+                    email: 'This field is required'
                 })
                 return false
             }
         }
-        if(!email){
-            setErrorMessages({
-                ...errorMessages,
-                email: 'This field is required'
-            })
-            return false
-        }
+
         if (email && !/[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/.test(email)) {
             setErrorMessages({
                 ...errorMessages,
                 email: 'Enter a valid email'
             })
             return false
-          }
-          if(!password){
+        }
+        if (!username) {
+            setErrorMessages({
+                ...errorMessages,
+                username: 'This field is required'
+            })
+            return false
+        }
+        if (username.length < 3) {
+            setErrorMessages({
+                ...errorMessages,
+                username: 'At least 3 characters'
+            })
+            return false
+        }
+        if (!password) {
             setErrorMessages({
                 ...errorMessages,
                 password: 'This field is required'
             })
             return false
         }
-        
-        if(isRegister && password.length< 4){
+
+        if (isRegister && password.length < 3) {
             setErrorMessages({
                 ...errorMessages,
-                password: 'At least 4 characters'
+                password: 'At least 3 characters'
             })
             return false
         }
@@ -86,55 +129,59 @@ export default function LoginForm() {
                                 <div className="relative w-full mb-3">
                                     <label
                                         className="block uppercase text-xs font-bold mb-2 text-white"
-                                        htmlFor="grid-password"
+                                        htmlFor="email"
                                     >
-                                        Username
+                                        Email
                                     </label>
                                     <input
-                                        type="text"
-                                        name="username"
-                                        value={login.username}
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        value={login.email}
                                         onChange={handleChange}
                                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-400 bg-neutro-100 rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
-                                        placeholder="Username"
+                                        placeholder="Email"
                                     />
-                                    <div className="text-red-400 text-xs mt-1">{errorMessages.username}</div>
+                                    <div className="text-red-400 text-xs mt-1">{errorMessages.email}</div>
                                 </div>
+
                             }
                             <div className="relative w-full mb-3">
                                 <label
                                     className="block uppercase text-xs font-bold mb-2 text-white"
-                                    htmlFor="grid-password"
+                                    htmlFor="username"
                                 >
-                                    Email
+                                    Username
                                 </label>
                                 <input
-                                    type="email"
-                                    name="email"
-                                    value={login.email}
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    value={login.username}
                                     onChange={handleChange}
                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-400 bg-neutro-100 rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
-                                    placeholder="Email"
+                                    placeholder="Username"
                                 />
-                                 <div className="text-red-400 text-xs mt-1">{errorMessages.email}</div>
+                                <div className="text-red-400 text-xs mt-1">{errorMessages.username}</div>
                             </div>
 
                             <div className="relative w-full mb-3">
                                 <label
                                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white focus:ring-amber-400"
-                                    htmlFor="grid-password"
+                                    htmlFor="password"
                                 >
                                     Password
                                 </label>
                                 <input
                                     name="password"
                                     type="password"
+                                    id="password"
                                     value={login.password}
                                     onChange={handleChange}
                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-black rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
                                     placeholder="Password"
                                 />
-                                 <div className="text-red-400 text-xs mt-1">{errorMessages.password}</div>
+                                <div className="text-red-400 text-xs mt-1">{errorMessages.password}</div>
                             </div>
                             <div>
                                 <label className="inline-flex items-center cursor-pointer">
