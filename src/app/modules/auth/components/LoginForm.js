@@ -30,29 +30,19 @@ export default function LoginForm() {
         e.preventDefault()
         const isValid = validate()
 
-        if (isValid) {
-            dispatch(signInOrSignUp(login))
-        }
+        if (isValid) dispatch(signInOrSignUp(login))
 
-        return
     }
     const resetForm = () =>{
         setLogin({ email: '', password: '', username: '' })
     }
     useEffect(() => {
-        console.log("asddfg");
         if (isFirstRender) {
             setIsFirstRender(false);
             return;
         }
-        console.log("asd");
         // Observar cambios en authData.hasError
-        if (authData.hasError) {
-          // Realizar acciones cuando authData.hasError se actualice
-          console.log("Error de autenticación:", authData.hasError);
-        } else {
-          // Realizar acciones cuando authData.hasError se actualice a false
-          console.log("La acción de inicio de sesión se completó con éxito.");
+        if (!authData.hasError) {
           if (isRegister) {
             setLogin({
                 ...login,
