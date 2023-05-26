@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-// componets
+// components
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom"
 
