@@ -1,19 +1,25 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewGroup } from "../groupsSlice";
+import { addNewPlayer, selectPlayerById, editPlayer } from "../playerSlice";
 import { selectAuth } from "../../auth/authSlice";
 
-export default function CreateGroup() {
+export default function CreatePlayer() {
+
+const { playerId } = useParams();
+
+  const playerToEdit = useSelector(state => selectPlayerById(state, playerId?? -1))
+
   const navigate = useNavigate()
-  const [team, setTeam] = useState({
-    title: '',
-    description: '',
+
+  const [player, setPlayer] = useState({
+    name: playerToEdit? playerToEdit.name: ''
   });
 
   const [errorMessages, setErrorMessages] = useState({
-    title: ''
+    name: ''
   });
+
 
   
   const authData = useSelector(selectAuth);
@@ -21,11 +27,11 @@ export default function CreateGroup() {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setTeam({
-        ...team,
+    setPlayer({
+        ...player,
         [e.target.name]: e.target.value
     })
-    setErrorMessages({ title: '' })
+    setErrorMessages({ name: '' })
   }
 
   const handleSubmit = (e) => {
@@ -34,22 +40,31 @@ export default function CreateGroup() {
         
     if(isValid) {
       const data = {
-        group: team,
+        name: player.name,
         user: authData.user
       }
-      dispatch(addNewGroup(data))
+      if(playerToEdit){
+        const dataToEdit = {
+            player: {...data, id: playerToEdit.id},
+            user: authData.user
+        }
+        dispatch(editPlayer(dataToEdit))
 
-      navigate('/groups/list')
+      }
+      else 
+        dispatch(addNewPlayer(data))
+
+      navigate('/games/')
     }
     return
   }
 
   const validate = () =>{
-    const { title } = team
-    if(title.length<3){
+    const { name } = player
+    if(name.length<3){
       setErrorMessages({
       ...errorMessages,
-      title: 'At least 3 characters'
+      name: 'At least 3 characters'
       })
       return false
     }
@@ -59,60 +74,44 @@ export default function CreateGroup() {
 
   return (
     <>
-      <div className="overflow-y-auto flex flex-center bg-zinc-850 text-white px-6 sm:pt-24 lg:px-24">
-        <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0">
+      <div className="overflow-y-auto flex justify-center items-center bg-zinc-850 text-white px-6 sm:pt-24 lg:px-24 h-screen">
+        <div className="relative flex flex-col min-w-0 break-words w-3/6 mb-6 shadow-lg rounded-lg border-0">
           <div className="rounded-t bg-zinc-850 mb-0 px-6 py-6">
             <div className=" text-center flex justify-between">
-              <h6 className="text-white text-xl font-bold">Create a Team</h6>
+              <h6 className="text-white text-xl font-bold">{playerToEdit? 'Edit player':'Create a Player'}</h6>
             </div>
           </div>
           <hr className="mb-6 border-b-1 border-zinc-500" />
           <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
             <form onSubmit={handleSubmit}>
-              <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                Team Information
-              </h6>
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 px-4">
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-zinc-200 text-xs font-bold mb-2"
-                      htmlFor="title"
+                      htmlFor="name"
                     >
                       Name
                     </label>
                     <input
                       onChange={handleChange}
                       type="text"
-                      name="title"
+                      name="name"
+                      value={player.name}
                       className="border-0 px-3 py-3 placeholder-gray-300 text-zinc-100 bg-zinc-700 rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
-                      placeholder="Team name"
+                      placeholder="Player name"
                     />
-                    <div className="text-red-400 text-xs mt-1">{errorMessages.title}</div>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap w-full">
-                  <div className="w-full lg:w-12/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="description"
-                      >
-                        Description
-                      </label>
-                      <textarea
-                        type="text"
-                        name="description"
-                        onChange={handleChange}
-                        className="border-0 placeholder-gray-300 text-zinc-100 bg-zinc-700 rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
-                        rows="4"
-                        placeholder="Describe your team..."
-                      ></textarea>
-                    </div>
+                    <div className="text-red-400 text-xs mt-1">{errorMessages.name}</div>
                   </div>
                 </div>
               </div>
+              <div className="flex flex-wrap">
+                <div className="w-full lg:w-12/12 px-4 flex justify-center">
+                    {player.name &&
+                        <img src={`https://robohash.org/${player.name}`} alt="avatar"/>
+                    }
+                </div>
+            </div>
 
               <hr className="mt-6 border-b-1 border-zinc-500" />
 
@@ -125,7 +124,7 @@ export default function CreateGroup() {
                 </button>
                 <Link
                   className="bg-white text-zinc-850 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                  to="/groups/list"
+                  to="/games"
                 >
                   Cancel
                 </Link>

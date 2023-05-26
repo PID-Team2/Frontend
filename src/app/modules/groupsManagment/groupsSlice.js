@@ -13,7 +13,6 @@ export const getGroups = createAsyncThunk('groups/getGroups',
         try {
           const response = await getAllGroups(user);
           
-          console.log("response", response)
           return response;
         } catch (error) {
           // Manejo del error, si es necesario
@@ -28,8 +27,6 @@ export const getGroupData = createAsyncThunk('groups/getGroup',
         try {
           const response = await getGroup(id);
           
-          console.log("response", response)
-          //toast.success("Group created successfully!");
           return response;
         } catch (error) {
           // Manejo del error, si es necesario
@@ -46,7 +43,6 @@ export const addNewGroup = createAsyncThunk(
     try {
       const response = await createGroup(data);
       
-      console.log("response", response)
       toast.success("Group created successfully!", {position: "bottom-center"});
       return response;
     } catch (error) {

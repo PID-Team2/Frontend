@@ -1,14 +1,9 @@
 import axios from "axios";
 
-export async function getAllGroups(user) {
+export async function getAllPlayers(user) {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-      }
-
-      const response = await axios.get(process.env.REACT_APP_API_URL+"group/admin/"+user.id, config);
+      
+      const response = await axios.get(process.env.REACT_APP_API_URL+"player/user/"+user.id);
       
       if (response.status === 200) {
         const responseData = response.data;
@@ -20,7 +15,7 @@ export async function getAllGroups(user) {
       throw error;
     }
 }
-export async function createGroup(data) {
+export async function createPlayer(data) {
     try {
       
       const config = {
@@ -29,14 +24,14 @@ export async function createGroup(data) {
         },
       }
       const req = {
-        ...data.group,
-        userAdminId: data.user.id
+        name: data.name,
+        userId: data.user.id
       }
 
-      const response = await axios.post(process.env.REACT_APP_API_URL+"group/", req, config);
+      const response = await axios.post(process.env.REACT_APP_API_URL+"player/", req, config);
   
       if (response.status === 200) {
-        const responseData = await axios.get(process.env.REACT_APP_API_URL+"group/"+response.data.id);
+        const responseData = await axios.get(process.env.REACT_APP_API_URL+"player/"+response.data.id);
         return responseData.data;
       } else {
         throw new Error('Error en la respuesta de la API');
@@ -45,9 +40,14 @@ export async function createGroup(data) {
       throw error;
     }
 }
-export async function updateGroup(data) {
+export async function updatePlayer(data) {
     try {
-      const response = await axios.put(process.env.REACT_APP_API_URL+"group/"+data.id, data);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${data.user.accessToken}`,
+        },
+      }
+      const response = await axios.put(process.env.REACT_APP_API_URL+"player/"+data.player.id, data.player, config);
   
       if (response.status === 200) {
         const responseData = response.data;
@@ -59,9 +59,9 @@ export async function updateGroup(data) {
       throw error;
     }
 }
-export async function getGroup(id) {
+export async function getPlayer(id) {
     try {
-      const response = await axios.get(process.env.REACT_APP_API_URL+"group/"+id);
+      const response = await axios.get(process.env.REACT_APP_API_URL+"player/"+id);
   
       if (response.status === 200) {
         const responseData = response.data;

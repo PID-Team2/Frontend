@@ -17,10 +17,8 @@ export default function Sidebar() {
     const dispatch = useDispatch();
   
     useEffect(() => {
-        console.log(groupData)
       if (authData.user && groupData.status == "idle") {
             dispatch(getGroups(authData.user))
-            console.log(groupData)
       }
     }, [authData.user, dispatch])
     
@@ -109,7 +107,7 @@ export default function Sidebar() {
                         <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                         {groupData.groups.length > 0?
                         groupData.groups.map((team) => (
-                            <li className="items-center" key={team.title}>
+                            <li className="items-center" key={team.id}>
                                 <Link
                                     className={
                                         "text-xs py-3 block text-white ml-3" 

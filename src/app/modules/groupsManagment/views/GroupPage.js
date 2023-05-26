@@ -8,12 +8,6 @@ export default function Group() {
     
   const group  = useSelector(state => selectgroupById(state, groupId))
 
-  useEffect(() => {
-
-    console.log(group)
-    
-  }, [groupId]);
-
     return (
         <>
             <div className="grid min-h-screen bg-zinc-850 px-6 py-4 lg:px-8 relative">

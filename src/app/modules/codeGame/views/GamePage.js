@@ -1,15 +1,38 @@
-import { Link } from "react-router-dom"
-import { TrophyIcon, UserGroupIcon, BookmarkIcon, FlagIcon, BugAntIcon, RocketLaunchIcon, GlobeEuropeAfricaIcon, FireIcon, GiftIcon } from "@heroicons/react/24/outline"
+import { Link, useParams } from "react-router-dom"
+import { TrophyIcon, UserGroupIcon, BookmarkIcon, FlagIcon, BugAntIcon, RocketLaunchIcon, GlobeEuropeAfricaIcon, FireIcon, GiftIcon, PencilIcon } from "@heroicons/react/24/outline"
+import { useSelector, useDispatch } from "react-redux";
+import { selectAuth } from "../../auth/authSlice";
+import { selectPlayerById } from "../playerSlice";
 export default function GamePage() {
+  const { playerId } = useParams();
+  const authData = useSelector(selectAuth);
+  const dispatch = useDispatch();
+
+  const player = useSelector(state => selectPlayerById(state, playerId))
+
+
   return (
     <>
       <main className="grid h-screen bg-zinc-800 text-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="bg-zinc-850 rounded-md p-4">
+          <div className="w-full  flex items-end">
+            <div className="inline-block h-10 w-10 rounded-full bg-zinc-700 ring-1 ring-zinc-400">
+              <img
+                className="inline-block h-10 w-10 rounded-full"
+                src={`https://robohash.org/${player.name}`}
+                alt=""
+              />
+            </div>
+            <Link to={`/games/edit-player/${player.id}`}>
+            <span className="text-xl ml-2 flex items-center hover:text-amber-300 cursor-pointer">{player.name}<PencilIcon className="ml-2 h-4"/></span>
+            </Link>
+          </div>
           <div className="w-full  p-4  flex">
+
             <div className="w-1/2">
-              <div className="flex justify-between w-1/2"><span>LVL. 5 </span><span>170 / 210 XP</span></div>
+              <div className="flex justify-between w-1/2"><span>LVL. {player ? player.level : ''} </span><span>{player.xp} / 15 XP</span></div>
               <div className="bg-zinc-700 h-2 w-1/2">
-                <div className="bg-amber-400 h-full w-3/4"></div>
+                <div className={`bg-amber-400 h-full w-${(player.xp) % 6}/6 ${player.xp == 0?'w-0': ''}`}></div>
               </div>
             </div>
             <div className="w-1/2 text-sm flex items-center justify-end">
@@ -58,7 +81,7 @@ export default function GamePage() {
             </div>
           </div>
         </div>
-      </main>
+      </main >
     </>
   )
 }

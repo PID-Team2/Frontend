@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-// pages
+// ***** pages ******
 import HomePage from './pages/Home';
 import Example from './app/modules/exampleModule/views/Example';
 import NotFound from './pages/NotFound';
 
 //Game
 import GamePage from './app/modules/codeGame/views/GamePage';
-
+import NoPlayerView from './app/modules/codeGame/views/NoPlayerView';
+import CreatePlayer from './app/modules/codeGame/views/CreatePlayer';
 // auth
 import LoginView from './app/modules/auth/views/LoginView';
 
@@ -17,7 +18,7 @@ import GroupsManagmentPage from './app/modules/groupsManagment/views/GroupsManag
 import CreateGroup from './app/modules/groupsManagment/views/CreateGroup';
 import Group from './app/modules/groupsManagment/views/GroupPage';
 
-//layouts
+//**** layouts *****
 import Auth from './common/layouts/auth';
 import Index from './common/layouts';
 
@@ -59,7 +60,11 @@ function App() {
 
               {/**Game routes */}
               <Route  element={<GameLayout/>}>
-                <Route path='/games' element={<GamePage/>}/>
+                <Route path='/games' element={<NoPlayerView/>}/>
+                <Route path='/games/add-player' element={<CreatePlayer/>}/>
+                <Route path='/games/edit-player/:playerId' element={<CreatePlayer/>}/>
+                <Route path='/game/:playerId' element={<GamePage/>}/>
+                
               </Route>
               
               {/** Page 404 */}

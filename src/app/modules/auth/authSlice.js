@@ -8,11 +8,10 @@ import { toast } from "react-toastify";
           try {
             let isRegister = data.email? true: false
             let response = null
-            console.log(isRegister)
+            
             if(isRegister) response = await signup(data);
             else response = await signin(data);
             
-            console.log("response", response)
             toast.success("Welcome "+(isRegister? '':'back '+response.username)+"!", 
             {position: "bottom-center"});
             return response;
@@ -30,7 +29,6 @@ import { toast } from "react-toastify";
         async (id) => {
           try {
             const response = await getUser(id);
-            console.log("response", response)
             return response;
           } catch (error) {
             throw error
@@ -49,7 +47,6 @@ const authSlice = createSlice({
     reducers: {
       logout: (state) => {
         state.user = null
-        console.log("log out")
       }
     },
     extraReducers: (builder) => {
@@ -62,8 +59,6 @@ const authSlice = createSlice({
           state.hasError = false;
           if(action.payload.username)
             state.user = action.payload
-          //else state.user = null
-          console.log("payload ",action.payload)
         })
         .addCase(signInOrSignUp.rejected, (state, action) => {
           state.isLoading = false;
@@ -77,7 +72,6 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.hasError = false;
           state.profile = action.payload
-          console.log("payload ",action.payload)
         })
         .addCase(getUserData.rejected, (state, action) => {
           state.isLoading = false;
