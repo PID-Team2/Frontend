@@ -47,7 +47,7 @@ const authSlice = createSlice({
           state.hasError = false;
           if(action.payload.username)
             state.user = action.payload
-          else state.user = null
+          //else state.user = null
           console.log("payload ",action.payload)
         })
         .addCase(signInOrSignUp.rejected, (state, action) => {

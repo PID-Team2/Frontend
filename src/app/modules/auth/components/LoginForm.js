@@ -212,7 +212,7 @@ export default function LoginForm() {
                 </div>
                 <div className="flex flex-wrap mt-6 relative">
                     <div className="w-1/2">
-                        <Link to={isRegister ? "/auth/login" : "/auth/register"} className="text-gray-100">
+                        <Link onClick={resetForm} to={isRegister ? "/auth/login" : "/auth/register"} className="text-gray-100">
                             <small>{isRegister ? 'Sign in to your account' : 'Create new account'}</small>
                         </Link>
                     </div>
