@@ -1,4 +1,4 @@
-import { signin, signup } from "./authApi";
+import { signin, signup, getUser } from "./authApi";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
@@ -13,12 +13,26 @@ import { toast } from "react-toastify";
             else response = await signin(data);
             
             console.log("response", response)
-            toast.success("Welcome "+(isRegister? '':'back '+response.username)+"!");
+            toast.success("Welcome "+(isRegister? '':'back '+response.username)+"!", 
+            {position: "bottom-center"});
             return response;
           } catch (error) {
             // Manejo del error, si es necesario
-            toast.error(error.response.data.message || "Unknown error 🥲");
+            toast.error(error.response.data.message || "Unknown error 🥲", {
+              position: "bottom-center"});
 
+            throw error
+          }
+        }
+      );
+      export const getUserData = createAsyncThunk(
+        'auth/getUser',
+        async (id) => {
+          try {
+            const response = await getUser(id);
+            console.log("response", response)
+            return response;
+          } catch (error) {
             throw error
           }
         }
@@ -29,7 +43,8 @@ const authSlice = createSlice({
     initialState: {
       user: null,
       isLoading: false,
-      hasError: false
+      hasError: false,
+      profile: null 
     },
     reducers: {
       logout: (state) => {
@@ -53,8 +68,22 @@ const authSlice = createSlice({
         .addCase(signInOrSignUp.rejected, (state, action) => {
           state.isLoading = false;
           state.hasError = true;
-          state.user = null;
-        });
+          state.profile = null;
+        })
+        .addCase(getUserData.pending, (state) => {
+          state.isLoading = true;
+        })
+        .addCase(getUserData.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.hasError = false;
+          state.profile = action.payload
+          console.log("payload ",action.payload)
+        })
+        .addCase(getUserData.rejected, (state, action) => {
+          state.isLoading = false;
+          state.hasError = true;
+          state.profile = null;
+        })
     },
   });
   export const { logout } = authSlice.actions;

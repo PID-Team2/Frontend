@@ -119,18 +119,22 @@ export default function Navbar() {
           <Link to="/example" className="text-sm font-semibold leading-6 ">
             Example Store
           </Link>
-          <Link to="/groups" className="text-sm font-semibold leading-6 ">
-            Grops Managment
-          </Link>
-          <Link to="/games" className="text-sm font-semibold leading-6 ">
-            Games
-          </Link>
+          {authData.user &&
+            <>
+              <Link to="/groups" className="text-sm font-semibold leading-6 ">
+              Grops Managment
+              </Link>
+              <Link to="/games" className="text-sm font-semibold leading-6 ">
+              Games
+              </Link>
+            </>
+          }
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {authData.user
              ? <AccountDropdown username={authData.user.username} onLogout={handleLogOut}/>
              
-             : <Link to="/auth/login" className="text-sm font-semibold leading-6 ">
+             : <Link to = "/auth/login" className="text-sm font-semibold leading-6 ">
                 Log in <span aria-hidden="true">&rarr;</span>
               </Link>
             }

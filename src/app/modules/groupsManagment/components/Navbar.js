@@ -1,6 +1,9 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import AccountDropdown from "../../../../common/components/AccountDropdown";
+import { logout, selectAuth } from "../../auth/authSlice";
 
 // components
 
@@ -10,6 +13,14 @@ import {
 
 export default function Navbar({dark}) {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
+   
+const authData = useSelector(selectAuth);
+
+const dispatch = useDispatch();
+const handleLogOut = () => {
+    dispatch(logout())
+  }
+
     return (
         <>
             <nav className={"top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-zinc-850"+ (dark ? "":"bg-transparent backdrop-blur-sm")}>
@@ -51,12 +62,12 @@ export default function Navbar({dark}) {
                             </li>
 
                             <li className="flex items-center">
-                                <button
-                                    className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                                    type="button"
+                                <div
+                                    className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                                    
                                 >
-                                    Something
-                                </button>
+                                    <AccountDropdown username={authData.user.username} onLogout={handleLogOut}/>
+                                </div>
                             </li>
                         </ul>
                     </div>

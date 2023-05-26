@@ -28,3 +28,18 @@ export async function signup(data) {
       throw error;
     }
 }
+
+export async function getUser(id) {
+  try {
+    const response = await axios.get(process.env.REACT_APP_API_URL+"user/"+id);
+
+    if (response.status === 200) {
+      const responseData = response.data;
+      return responseData;
+    } else {
+      throw new Error('Error en la respuesta de la API');
+    }
+  } catch (error) {
+    throw error;
+  }
+}

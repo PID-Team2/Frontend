@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import '../assets/styles/index.css'
 import { UserGroupIcon, BriefcaseIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
+
 export default function GroupsManagmentPage() {
 
   return (

@@ -1,20 +1,29 @@
 /*eslint-disable*/
 import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
     Bars3Icon,
     XMarkIcon
 } from '@heroicons/react/24/outline'
+import { useSelector, useDispatch } from "react-redux";
+import { selectAuth } from "../../auth/authSlice";
+import { getGroups, selectAllGroups } from "../groupsSlice";
 
 export default function Sidebar() {
     const [collapseShow, setCollapseShow] = React.useState("hidden");
-    const teams = [
-        {name: "The best team"},
-        {name: "Uci team"},
-        {name: "PID Team"},
-        {name: "CodeBrackets team"},
-        {name: "Super Hero Game"},
-    ]
+    const authData = useSelector(selectAuth);
+    const groupData = useSelector(selectAllGroups);
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+        console.log(groupData)
+      if (authData.user && groupData.status == "idle") {
+            dispatch(getGroups(authData.user))
+            console.log(groupData)
+      }
+    }, [authData.user, dispatch])
+    
     const projects = [
         {name: "Icons Library"},
         {name: "Coding Game"},
@@ -98,18 +107,23 @@ export default function Sidebar() {
                         {/* Teams */}
 
                         <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-                        {teams.map((team) => (
-                            <li className="items-center" key={team.name}>
+                        {groupData.groups.length > 0?
+                        groupData.groups.map((team) => (
+                            <li className="items-center" key={team.title}>
                                 <Link
                                     className={
                                         "text-xs py-3 block text-white ml-3" 
                                     }
-                                    to="/groups/list"
+                                    to={`/groups/list/${team.id}`}
                                 >
-                                    {team.name}
+                                    {team.title}
                                 </Link>
                             </li>
-                        ))}
+                        ))
+                        : groupData.state == "loading"
+                            ? <span className="text-zinc-600">Loading...</span>
+                            : <span className="text-zinc-600">No teams created yet..</span>
+                        }
                         </ul>
 
                         {/* Divider */}

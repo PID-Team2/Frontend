@@ -1,5 +1,4 @@
 import React from "react";
-import { FingerPrintIcon } from "@heroicons/react/20/solid";
 import { BellAlertIcon } from "@heroicons/react/24/outline";
 export default function Footer() {
   return (

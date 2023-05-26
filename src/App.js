@@ -24,6 +24,7 @@ import Index from './common/layouts';
 //groups managment
 import GroupsLayout from './app/modules/groupsManagment/layouts';
 import GroupsManagmentLayout from './app/modules/groupsManagment/layouts/managment';
+import NoGroupView from './app/modules/groupsManagment/views/NoGroupPage';
 
 //code game
 import GameLayout from './app/modules/codeGame/layouts/index'
@@ -51,8 +52,9 @@ function App() {
               </Route>
 
               <Route element={<GroupsManagmentLayout/>}>
-                <Route path='/groups/add-group' element={<CreateGroup/>}/> 
-                <Route path='/groups/list' element={<Group/>}/>
+                <Route path='/groups/add-group' element={<CreateGroup/>}/>
+                <Route path='/groups/list/' element={<NoGroupView/>}/>
+                <Route path='/groups/list/:groupId' element={<Group/>}/>
               </Route>
 
               {/**Game routes */}
