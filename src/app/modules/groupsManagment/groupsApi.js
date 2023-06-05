@@ -47,10 +47,16 @@ export async function createGroup(data) {
 }
 export async function updateGroup(data) {
     try {
-      const response = await axios.put(process.env.REACT_APP_API_URL+"group/"+data.id, data);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${data.user.accessToken}`,
+        },
+      }
+      const response = await axios.put(process.env.REACT_APP_API_URL+"group/"+data.group.id, data.group, config);
   
       if (response.status === 200) {
         const responseData = response.data;
+        //console.log(responseData)
         return responseData;
       } else {
         throw new Error('Error en la respuesta de la API');

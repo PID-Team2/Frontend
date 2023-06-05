@@ -6,7 +6,7 @@ import { selectAuth } from "../../auth/authSlice";
 
 export default function CreatePlayer() {
 
-const { playerId } = useParams();
+  const { playerId } = useParams();
 
   const playerToEdit = useSelector(state => selectPlayerById(state, playerId?? -1))
 
@@ -20,8 +20,6 @@ const { playerId } = useParams();
     name: ''
   });
 
-
-  
   const authData = useSelector(selectAuth);
 
   const dispatch = useDispatch();

@@ -1,8 +1,7 @@
-import { UserPlusIcon } from "@heroicons/react/24/outline"
+import { UserPlusIcon, PencilIcon } from "@heroicons/react/24/outline"
 import { useSelector } from "react-redux"
 import { selectgroupById } from "../groupsSlice"
-import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 export default function Group() {
   const { groupId } = useParams();
     
@@ -13,7 +12,9 @@ export default function Group() {
             <div className="grid min-h-screen bg-zinc-850 px-6 py-4 lg:px-8 relative">
                 <div className="bg-zinc-850 py-8 sm:py-32 px-4 md:px-5">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{group && group.title}</h2>
+                        <Link to={`/groups/edit-group/${group.id}`}>
+                            <h2 className="text-3xl font-bold text-white sm:text-4xl flex justify-center items-center hover:text-amber-300 hover:cursor-pointer">{group && group.title}<PencilIcon className="ml-2 h-7"/></h2>
+                        </Link>
                         <p className="mt-6 text-lg leading-8 text-gray-300">
                             {group? group.description: '404'}
                         </p>

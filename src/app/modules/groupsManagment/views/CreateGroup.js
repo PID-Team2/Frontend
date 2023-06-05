@@ -1,29 +1,34 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewGroup } from "../groupsSlice";
+import { addNewGroup, selectgroupById, editGroup } from "../groupsSlice";
 import { selectAuth } from "../../auth/authSlice";
 
 export default function CreateGroup() {
+  const { groupId } = useParams();
+
+  const groupToEdit = useSelector(state => selectgroupById(state, groupId ?? -1))
+
   const navigate = useNavigate()
+
   const [team, setTeam] = useState({
-    title: '',
-    description: '',
+    title: groupToEdit ? groupToEdit.title : '',
+    description: groupToEdit ? groupToEdit.description : '',
   });
 
   const [errorMessages, setErrorMessages] = useState({
     title: ''
   });
 
-  
+
   const authData = useSelector(selectAuth);
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setTeam({
-        ...team,
-        [e.target.name]: e.target.value
+      ...team,
+      [e.target.name]: e.target.value
     })
     setErrorMessages({ title: '' })
   }
@@ -31,29 +36,38 @@ export default function CreateGroup() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const isValid = validate()
-        
-    if(isValid) {
+
+    if (isValid) {
       const data = {
         group: team,
         user: authData.user
       }
-      dispatch(addNewGroup(data))
+      if (groupToEdit) {
+        const dataToEdit = {
+          group: { ...data.group, id: groupToEdit.id },
+          user: authData.user
+        }
+        dispatch(editGroup(dataToEdit))
+
+      }
+      else
+        dispatch(addNewGroup(data))
 
       navigate('/groups/list')
     }
     return
   }
 
-  const validate = () =>{
+  const validate = () => {
     const { title } = team
-    if(title.length<3){
+    if (title.length < 3) {
       setErrorMessages({
-      ...errorMessages,
-      title: 'At least 3 characters'
+        ...errorMessages,
+        title: 'At least 3 characters'
       })
       return false
     }
-    
+
     return true
   }
 
@@ -83,6 +97,7 @@ export default function CreateGroup() {
                     </label>
                     <input
                       onChange={handleChange}
+                      value={team.title}
                       type="text"
                       name="title"
                       className="border-0 px-3 py-3 placeholder-gray-300 text-zinc-100 bg-zinc-700 rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
@@ -105,6 +120,7 @@ export default function CreateGroup() {
                         type="text"
                         name="description"
                         onChange={handleChange}
+                        value={team.description}
                         className="border-0 placeholder-gray-300 text-zinc-100 bg-zinc-700 rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
                         rows="4"
                         placeholder="Describe your team..."

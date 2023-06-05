@@ -30,6 +30,9 @@ import NoGroupView from './app/modules/groupsManagment/views/NoGroupPage';
 //code game
 import GameLayout from './app/modules/codeGame/layouts/index'
 
+//routes validators
+import PrivateRoute from './common/components/PrivateRoute';
+
 function App() {
   return (
     <div className='h-screen'>
@@ -48,18 +51,20 @@ function App() {
               </Route>
 
               {/**Group torutes */}
-              <Route element={<GroupsLayout/>}>
+              <Route element={<PrivateRoute element={<GroupsLayout/>}/>}>
                 <Route path='/groups' element={<GroupsManagmentPage/>}/>
               </Route>
 
-              <Route element={<GroupsManagmentLayout/>}>
+              <Route element={<PrivateRoute element = {<GroupsManagmentLayout/>}/>}>
                 <Route path='/groups/add-group' element={<CreateGroup/>}/>
+                <Route path='/groups/edit-group/:groupId' element={<CreateGroup/>}/>
                 <Route path='/groups/list/' element={<NoGroupView/>}/>
                 <Route path='/groups/list/:groupId' element={<Group/>}/>
               </Route>
 
               {/**Game routes */}
-              <Route  element={<GameLayout/>}>
+              <Route  element={<PrivateRoute element={<GameLayout/>}/>}>
+
                 <Route path='/games' element={<NoPlayerView/>}/>
                 <Route path='/games/add-player' element={<CreatePlayer/>}/>
                 <Route path='/games/edit-player/:playerId' element={<CreatePlayer/>}/>
