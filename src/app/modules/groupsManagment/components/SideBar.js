@@ -4,18 +4,29 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
     Bars3Icon,
-    XMarkIcon
+    XMarkIcon,
+    TrashIcon
 } from '@heroicons/react/24/outline'
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuth } from "../../auth/authSlice";
-import { getGroups, selectAllGroups } from "../groupsSlice";
+import { getGroups, selectAllGroups, eraseGroup } from "../groupsSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
     const [collapseShow, setCollapseShow] = React.useState("hidden");
     const authData = useSelector(selectAuth);
     const groupData = useSelector(selectAllGroups);
     const dispatch = useDispatch();
-  
+    const navigate = useNavigate()
+
+    const handleDelete = (team) => {
+        dispatch(eraseGroup({
+            group:{ ...team},
+            user: authData.user
+        }))
+        
+        navigate('/groups/list')
+    }
     useEffect(() => {
       if (authData.user && groupData.status == "idle") {
             dispatch(getGroups(authData.user))
@@ -49,7 +60,7 @@ export default function Sidebar() {
                         className="md:block text-left md:pb-2 text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                         to="/groups"
                     >
-                        Home
+                        Groups Managment
                     </Link>
                     <div
                         className={
@@ -107,15 +118,16 @@ export default function Sidebar() {
                         <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                         {groupData.groups.length > 0?
                         groupData.groups.map((team) => (
-                            <li className="items-center" key={team.id}>
+                            <li className="items-center flex justify-between" key={team.id}>
                                 <Link
                                     className={
-                                        "text-xs py-3 block text-white ml-3" 
+                                        "text-xs py-3 block text-white mx-3" 
                                     }
                                     to={`/groups/list/${team.id}`}
                                 >
                                     {team.title}
                                 </Link>
+                                <TrashIcon onClick={()=>handleDelete(team)} className="h-4 w-4 text-white hover:text-amber-400 cursor-pinter" />
                             </li>
                         ))
                         : groupData.state == "loading"

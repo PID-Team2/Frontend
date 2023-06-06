@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { UserCircleIcon } from '@heroicons/react/24/outline'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -13,7 +12,7 @@ export default function AccountDropdown({username, onLogout}) {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex w-full justify-center gap-x-1.5  px-3 py-2 text-sm font-semibold text-white">
-        <UserCircleIcon className="h-5 w-5" aria-hidden="true" />{username? username: ''}
+        <img alt="user" src={username?`https://api.multiavatar.com/${username}.png`: ''} className="h-5 w-5" aria-hidden="true" />{username? username: ''}
           <ChevronDownIcon className="-mr-1 h-5 w-5" aria-hidden="true" />
         </Menu.Button>
       </div>

@@ -2,13 +2,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../app/modules/exampleModule/counterSlice';
 import authReducer from './modules/auth/authSlice';
 import groupsReducer from './modules/groupsManagment/groupsSlice';
-import playerSlice from './modules/codeGame/playerSlice';
+import playerReducer from './modules/codeGame/playerSlice';
+import usersReducer from './modules/auth/usersSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     auth: authReducer,
     groups: groupsReducer,
-    player: playerSlice
+    player: playerReducer,
+    users: usersReducer
   },
 });

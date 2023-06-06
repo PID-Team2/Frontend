@@ -79,20 +79,44 @@ export async function getGroup(id) {
       throw error;
     }
 }
-export async function addUserToGroup(gid, user) {
+export async function deleteGroup(data) {
   try {
-    const data = {
-      userId: user.id
-    }
     const config = {
       headers: {
-        Authorization: `Bearer ${user.accessToken}`,
+        Authorization: `Bearer ${data.user.accessToken}`,
       },
     }
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}group/${gid}/user/`, data, config);
+    const response = await axios.delete(process.env.REACT_APP_API_URL+"group/"+data.group.id, config);
 
     if (response.status === 200) {
       const responseData = response.data;
+      return responseData;
+    } else {
+      throw new Error('Error en la respuesta de la API');
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+export async function addUserToGroup(data) {
+  try {
+    const gid = data.group.id
+    const dta = {
+      userId: data.user.id
+    }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${data.auth.accessToken}`,
+      },
+    }
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}group/${gid}/user/`, dta, config);
+
+    if (response.status === 200) {
+      const responseData = {
+        response: response.data,
+        groupId: gid,
+        user: data.user
+      };
       return responseData;
     } else {
       throw new Error('Error en la respuesta de la API');

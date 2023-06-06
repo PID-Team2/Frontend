@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { createGroup, getGroup, updateGroup, getAllGroups, addUserToGroup } from './groupsApi'
+import { createGroup, getGroup, updateGroup, getAllGroups, addUserToGroup, deleteGroup } from './groupsApi'
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -9,32 +9,32 @@ const initialState = {
 }
 
 export const getGroups = createAsyncThunk('groups/getGroups',
-    async (user) => {
-        try {
-          const response = await getAllGroups(user);
-          
-          return response;
-        } catch (error) {
-          // Manejo del error, si es necesario
-          toast.error(error.response.data.message || "Unknown error getting groups 🥲", {position: "bottom-center"});
-    
-          throw error
-        }
+  async (user) => {
+    try {
+      const response = await getAllGroups(user);
+
+      return response;
+    } catch (error) {
+      // Manejo del error, si es necesario
+      toast.error(error.response.data.message || "Unknown error getting groups 🥲", { position: "bottom-center" });
+
+      throw error
     }
+  }
 )
 export const getGroupData = createAsyncThunk('groups/getGroup',
-    async (id) => {
-        try {
-          const response = await getGroup(id);
-          
-          return response;
-        } catch (error) {
-          // Manejo del error, si es necesario
-          toast.error(error.response.data.message || "Unknown error getting group 🥲", {position: "bottom-center"});
-    
-          throw error
-        }
+  async (id) => {
+    try {
+      const response = await getGroup(id);
+
+      return response;
+    } catch (error) {
+      // Manejo del error, si es necesario
+      toast.error(error.response.data.message || "Unknown error getting group 🥲", { position: "bottom-center" });
+
+      throw error
     }
+  }
 )
 
 export const addNewGroup = createAsyncThunk(
@@ -42,12 +42,12 @@ export const addNewGroup = createAsyncThunk(
   async (data) => {
     try {
       const response = await createGroup(data);
-      
-      toast.success("Group created successfully!", {position: "bottom-center"});
+
+      toast.success("Group created successfully!", { position: "bottom-center" });
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", {position: "bottom-center"});
+      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center" });
 
       throw error
     }
@@ -58,12 +58,45 @@ export const editGroup = createAsyncThunk(
   async (data) => {
     try {
       const response = await updateGroup(data);
-      
-      toast.success("Group updated successfully!", {position: "bottom-center"});
+
+      toast.success("Group updated successfully!", { position: "bottom-center" });
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", {position: "bottom-center"});
+      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center" });
+
+      throw error
+    }
+  }
+)
+export const inviteUser = createAsyncThunk(
+  'groups/inviteUser',
+  async (data) => {
+    try {
+      const response = await addUserToGroup(data);
+
+      toast.success("User added successfully!", { position: "bottom-center" });
+      return response;
+    } catch (error) {
+      // Manejo del error, si es necesario
+      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center" });
+
+      throw error
+    }
+  }
+)
+
+export const eraseGroup = createAsyncThunk(
+  'groups/eraseGroup',
+  async (data) => {
+    try {
+      const response = await deleteGroup(data);
+
+      toast.success("Group deleted successfully!", { position: "bottom-center" });
+      return response;
+    } catch (error) {
+      // Manejo del error, si es necesario
+      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center" });
 
       throw error
     }
@@ -73,7 +106,7 @@ const groupSlice = createSlice({
   name: 'groups',
   initialState,
   reducers: {
-    
+
   },
   extraReducers(builder) {
     builder
@@ -103,10 +136,35 @@ const groupSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
+      .addCase(eraseGroup.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(eraseGroup.fulfilled, (state, action) => {
+        const idx = state.groups.findIndex(it => it.id == action.payload.id)
+        state.groups.splice(idx, 1)
+        state.status = 'succeeded'
+      })
+      .addCase(eraseGroup.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+      .addCase(inviteUser.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(inviteUser.fulfilled, (state, action) => {
+        const idx = state.groups.findIndex(it => it.id == action.payload.groupId)
+        state.groups[idx].users.push(action.payload.user)
+        //console.log(action.payload)
+        state.status = 'succeeded'
+      })
+      .addCase(inviteUser.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
   },
 })
 
-export const {  } = groupSlice.actions
+export const { } = groupSlice.actions
 
 export default groupSlice.reducer
 
