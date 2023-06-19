@@ -27,11 +27,11 @@ const handleLogOut = () => {
                 <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                         <Link
-                            className="text-white text-sm font-bold leading-relaxed flex items-center mr-4 py-2 whitespace-nowrap uppercase"
+                            className="text-white text-sm font-bold leading-relaxed flex items-center mr-4 py-2 whitespace-nowrap"
                             to="/"
                         >
                             <img className="h-8 w-auto mr-4" src="https://tailwindui.com/img/logos/mark.svg?color=amber&shade=400" alt="" />
-                            CodeBrackets
+                            StackOverflowUCI
                         </Link>
                         <div className="flex lg:hidden">
                             <button

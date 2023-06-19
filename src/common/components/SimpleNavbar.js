@@ -16,11 +16,11 @@ export default function SimpleNavbar(props) {
                 <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                         <Link
-                            className="text-white text-sm font-bold leading-relaxed flex items-center mr-4 py-2 whitespace-nowrap uppercase"
+                            className="text-white text-sm font-bold leading-relaxed flex items-center mr-4 py-2 whitespace-nowrap"
                             to="/"
                         >
                             <img className="h-8 w-auto mr-4" src="https://tailwindui.com/img/logos/mark.svg?color=amber&shade=400" alt="" />
-                            CodeBrackets
+                            StackOverflowUCI
                         </Link>
                         <button
                             className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"

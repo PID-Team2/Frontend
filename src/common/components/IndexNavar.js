@@ -51,7 +51,7 @@ export default function Navbar() {
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center">
             <img className="h-8 w-auto mr-4" src="https://tailwindui.com/img/logos/mark.svg?color=amber&shade=400" alt="" />
-            <span className="h-8 w-auto">CodeBrackets</span>
+            <span className="h-8 w-auto">StackOverflowUCI</span>
           </Link>
         </div>
         <div className="flex lg:hidden">
