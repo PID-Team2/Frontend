@@ -37,8 +37,10 @@ export default function LoginForm() {
         setLogin({ email: '', password: '', username: '' })
     }
     useEffect(() => {
+        console.log("efect")
         if (isFirstRender) {
             setIsFirstRender(false);
+            console.log("First render")
             return;
         }
         // Observar cambios en authData.hasError
@@ -52,7 +54,7 @@ export default function LoginForm() {
           }
             else navigate('/')
         }
-    }, [authData.hasError, authData.user]);
+    }, [authData.user]);
 
     const validate = () => {
         const { email, username, password } = login
@@ -115,6 +117,24 @@ export default function LoginForm() {
                             <h1>{isRegister ? 'Create an account' : 'Sign in to your account'}</h1>
                         </div>
                         <form onSubmit={handleSubmit}>
+                            <div className="relative w-full mb-3">
+                                <label
+                                    className="block uppercase text-xs font-bold mb-2 text-white"
+                                    htmlFor="username"
+                                >
+                                    Username
+                                </label>
+                                <input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    value={login.username}
+                                    onChange={handleChange}
+                                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-400 bg-neutro-100 rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
+                                    placeholder="Username"
+                                />
+                                <div className="text-red-400 text-xs mt-1">{errorMessages.username}</div>
+                            </div>
                             {isRegister &&
                                 <div className="relative w-full mb-3">
                                     <label
@@ -134,27 +154,7 @@ export default function LoginForm() {
                                     />
                                     <div className="text-red-400 text-xs mt-1">{errorMessages.email}</div>
                                 </div>
-
                             }
-                            <div className="relative w-full mb-3">
-                                <label
-                                    className="block uppercase text-xs font-bold mb-2 text-white"
-                                    htmlFor="username"
-                                >
-                                    Username
-                                </label>
-                                <input
-                                    type="text"
-                                    name="username"
-                                    id="username"
-                                    value={login.username}
-                                    onChange={handleChange}
-                                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-400 bg-neutro-100 rounded text-sm shadow focus:outline-none focus:ring focus-within:ring-amber-400 w-full ease-linear transition-all duration-150"
-                                    placeholder="Username"
-                                />
-                                <div className="text-red-400 text-xs mt-1">{errorMessages.username}</div>
-                            </div>
-
                             <div className="relative w-full mb-3">
                                 <label
                                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white focus:ring-amber-400"

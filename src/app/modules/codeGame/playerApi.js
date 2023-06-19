@@ -73,20 +73,21 @@ export async function getPlayer(id) {
       throw error;
     }
 }
-export async function addUserToGroup(gid, user) {
+
+export async function deletePlayer(data) {
   try {
-    const data = {
-      userId: user.id
-    }
     const config = {
       headers: {
-        Authorization: `Bearer ${user.accessToken}`,
+        Authorization: `Bearer ${data.user.accessToken}`,
       },
     }
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}group/${gid}/user/`, data, config);
+    const response = await axios.delete(process.env.REACT_APP_API_URL+"player/"+data.player.id, config);
 
     if (response.status === 200) {
-      const responseData = response.data;
+      const responseData = {
+        response: response.data,
+        player: data.player
+      };
       return responseData;
     } else {
       throw new Error('Error en la respuesta de la API');

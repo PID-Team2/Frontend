@@ -61,7 +61,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-zinc-850  hover:text-zinc-800  font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="/"
                       >
                         About Us
                       </a>
@@ -69,7 +69,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-zinc-850  hover: text-zinc-800 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="/"
                       >
                         Blog
                       </a>
@@ -77,7 +77,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-zinc-850 hover:text-zinc-800 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="/"
                       >
                         Github
                       </a>

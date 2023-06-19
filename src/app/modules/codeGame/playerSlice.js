@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { createPlayer, getAllPlayers, updatePlayer } from './playerApi';
+import { createPlayer, getAllPlayers, updatePlayer, deletePlayer } from './playerApi';
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -17,7 +17,7 @@ export const getPlayers = createAsyncThunk('player/getPlayers',
           return response;
         } catch (error) {
           // Manejo del error, si es necesario
-          toast.error(error.response.data.message || "Unknown error getting players 🥲", {position: "bottom-center"});
+          toast.error(error.response.data.message || "Unknown error getting players 🥲", {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
     
           throw error
         }
@@ -31,11 +31,11 @@ export const addNewPlayer = createAsyncThunk(
     try {
       const response = await createPlayer(data);
       
-      toast.success("Player created successfully!", {position: "bottom-center"});
+      toast.success("Player created successfully!", {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", {position: "bottom-center"});
+      toast.error(error.response.data.message || "Unknown error 🥲", {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
 
       throw error
     }
@@ -47,11 +47,28 @@ export const editPlayer = createAsyncThunk(
     try {
       const response = await updatePlayer(data);
       
-      toast.success("Player updated successfully!", {position: "bottom-center"});
+      toast.success("Player updated successfully!", {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", {position: "bottom-center"});
+      toast.error(error.response.data.message || "Unknown error 🥲", {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
+
+      throw error
+    }
+  }
+)
+
+export const erasePlayer = createAsyncThunk(
+  'player/erasePlayer',
+  async (data) => {
+    try {
+      const response = await deletePlayer(data);
+
+      toast.success("Player deleted successfully!", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
+      return response;
+    } catch (error) {
+      // Manejo del error, si es necesario
+      toast.error(error.response.data.message || "Unknown error 🥲", {position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
 
       throw error
     }
@@ -91,7 +108,20 @@ const playerSlice = createSlice({
       .addCase(editPlayer.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
-      })//editPlayer
+      })
+      .addCase(erasePlayer.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(erasePlayer.fulfilled, (state, action) => {
+        const idx = state.players.findIndex(it => it.id == action.payload.player.id)
+        state.players.splice(idx, 1)
+        state.status = 'succeeded'
+        //console.log(action.payload.group.id)
+      })
+      .addCase(erasePlayer.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
   },
 })
 

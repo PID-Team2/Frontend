@@ -89,7 +89,10 @@ export async function deleteGroup(data) {
     const response = await axios.delete(process.env.REACT_APP_API_URL+"group/"+data.group.id, config);
 
     if (response.status === 200) {
-      const responseData = response.data;
+      const responseData = {
+        response: response.data,
+        group: data.group
+      }
       return responseData;
     } else {
       throw new Error('Error en la respuesta de la API');

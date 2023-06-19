@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
             const response = await getAllUsers();
             return response;
           } catch (error) {
-            toast.error(error.response.data.message || "Unknown error getting users 🥲", {position: "bottom-center"});
+            toast.error(error.response.data.message || "Unknown error getting users 🥲", {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
             throw error
           }
         }

@@ -13,12 +13,11 @@ import { toast } from "react-toastify";
             else response = await signin(data);
             
             toast.success("Welcome "+(isRegister? '':'back '+response.username)+"!", 
-            {position: "bottom-center"});
+            {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
             return response;
           } catch (error) {
             // Manejo del error, si es necesario
-            toast.error(error.response.data.message || "Unknown error 🥲", {
-              position: "bottom-center"});
+            toast.error(error.response.data.message || "Unknown error 🥲", {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
 
             throw error
           }
@@ -59,11 +58,12 @@ const authSlice = createSlice({
           state.hasError = false;
           if(action.payload.username)
             state.user = action.payload
+          else state.user = {}
         })
         .addCase(signInOrSignUp.rejected, (state, action) => {
           state.isLoading = false;
           state.hasError = true;
-          state.profile = null;
+          state.user = null;
         })
         .addCase(getUserData.pending, (state) => {
           state.isLoading = true;

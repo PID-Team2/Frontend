@@ -16,7 +16,7 @@ export const getGroups = createAsyncThunk('groups/getGroups',
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error getting groups 🥲", { position: "bottom-center" });
+      toast.error(error.response.data.message || "Unknown error getting groups 🥲", { position: "bottom-center", hideProgressBar: true, autoClose: 2000});
 
       throw error
     }
@@ -30,7 +30,7 @@ export const getGroupData = createAsyncThunk('groups/getGroup',
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error getting group 🥲", { position: "bottom-center" });
+      toast.error(error.response.data.message || "Unknown error getting group 🥲", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
 
       throw error
     }
@@ -43,11 +43,11 @@ export const addNewGroup = createAsyncThunk(
     try {
       const response = await createGroup(data);
 
-      toast.success("Group created successfully!", { position: "bottom-center" });
+      toast.success("Group created successfully!", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center" });
+      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
 
       throw error
     }
@@ -59,11 +59,11 @@ export const editGroup = createAsyncThunk(
     try {
       const response = await updateGroup(data);
 
-      toast.success("Group updated successfully!", { position: "bottom-center" });
+      toast.success("Group updated successfully!", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center" });
+      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
 
       throw error
     }
@@ -75,11 +75,11 @@ export const inviteUser = createAsyncThunk(
     try {
       const response = await addUserToGroup(data);
 
-      toast.success("User added successfully!", { position: "bottom-center" });
+      toast.success("User added successfully!", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center" });
+      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
 
       throw error
     }
@@ -92,11 +92,11 @@ export const eraseGroup = createAsyncThunk(
     try {
       const response = await deleteGroup(data);
 
-      toast.success("Group deleted successfully!", { position: "bottom-center" });
+      toast.success("Group deleted successfully!", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center" });
+      toast.error(error.response.data.message || "Unknown error 🥲", { position: "bottom-center", hideProgressBar: true, autoClose: 2000 });
 
       throw error
     }
@@ -140,9 +140,10 @@ const groupSlice = createSlice({
         state.status = 'loading'
       })
       .addCase(eraseGroup.fulfilled, (state, action) => {
-        const idx = state.groups.findIndex(it => it.id == action.payload.id)
+        const idx = state.groups.findIndex(it => it.id == action.payload.group.id)
         state.groups.splice(idx, 1)
         state.status = 'succeeded'
+        console.log(action.payload.group.id)
       })
       .addCase(eraseGroup.rejected, (state, action) => {
         state.status = 'failed'
@@ -163,8 +164,6 @@ const groupSlice = createSlice({
       })
   },
 })
-
-export const { } = groupSlice.actions
 
 export default groupSlice.reducer
 

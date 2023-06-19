@@ -10,6 +10,8 @@ import NotFound from './pages/NotFound';
 import GamePage from './app/modules/codeGame/views/GamePage';
 import NoPlayerView from './app/modules/codeGame/views/NoPlayerView';
 import CreatePlayer from './app/modules/codeGame/views/CreatePlayer';
+import Level1 from './app/modules/codeGame/views/Level1';
+
 // auth
 import LoginView from './app/modules/auth/views/LoginView';
 
@@ -29,6 +31,7 @@ import NoGroupView from './app/modules/groupsManagment/views/NoGroupPage';
 
 //code game
 import GameLayout from './app/modules/codeGame/layouts/index'
+import LevelLayout from './app/modules/codeGame/layouts/LevelLayout';
 
 //routes validators
 import PrivateRoute from './common/components/PrivateRoute';
@@ -69,7 +72,10 @@ function App() {
                 <Route path='/games/add-player' element={<CreatePlayer/>}/>
                 <Route path='/games/edit-player/:playerId' element={<CreatePlayer/>}/>
                 <Route path='/game/:playerId' element={<GamePage/>}/>
-                
+
+              </Route>
+              <Route  element={<PrivateRoute element={<LevelLayout/>}/>}>
+                <Route path='/game/:playerId/level/1' element={<Level1/>}/>
               </Route>
               
               {/** Page 404 */}

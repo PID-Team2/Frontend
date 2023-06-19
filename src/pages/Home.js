@@ -2,7 +2,7 @@ import React from 'react';
 
 // styles
 import '../common/styles/home.css';
-import Footer from '../common/components/Footer';
+
 // components
 import HomeBanner from '../common/components/HomeBanner';
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ function HomePage() {
         </div>
       </div>
       <main>
-        <section className="pb-20 bg-zinc-850 -mt-36 text-white">
+        <section id="gorupManagment" className="pb-20 bg-zinc-850 -mt-36 text-white">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap items-center mt-32">
               <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
