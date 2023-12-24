@@ -167,8 +167,9 @@ export default function Level1() {
                                 :
                                 <div className="flex w-full">
                                     <div className="w-2/3 flex flex-col  mr-2">
-                                        <div className="h-2/3 bg-zinc-800 mb-1 rounded-md p-3">
-                                            <span className="mb-4 text-gray-400">Imprima en la salida todos los valores de la entrada </span>
+                                        <div className="h-2/3 bg-zinc-800 mb-1 rounded-md p-3 flex flex-col">
+                                            <span className="mb-5 text-gray-white text-3xl">Hello, World!</span>
+                                            <span className="mb-4 text-gray-300">Imprima en la salida todos los valores de la entrada </span>
                                             <span className="mb-2">Input:</span>
                                             <span>1 2 3 4</span>
                                         </div>
