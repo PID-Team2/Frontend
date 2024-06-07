@@ -1,87 +1,103 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // ***** pages ******
-import HomePage from './pages/Home';
-import Example from './app/modules/exampleModule/views/Example';
-import NotFound from './pages/NotFound';
+import HomePage from "./pages/Home";
+import Example from "./app/modules/exampleModule/views/Example";
+import NotFound from "./pages/NotFound";
 
 //Game
-import GamePage from './app/modules/codeGame/views/GamePage';
-import NoPlayerView from './app/modules/codeGame/views/NoPlayerView';
-import CreatePlayer from './app/modules/codeGame/views/CreatePlayer';
-import Level1 from './app/modules/codeGame/views/Level1';
+import GamePage from "./app/modules/codeGame/views/GamePage";
+import NoPlayerView from "./app/modules/codeGame/views/NoPlayerView";
+import CreatePlayer from "./app/modules/codeGame/views/CreatePlayer";
+import Level1 from "./app/modules/codeGame/views/Level1";
 
 // auth
-import LoginView from './app/modules/auth/views/LoginView';
+import LoginView from "./app/modules/auth/views/LoginView";
 
 //Grops managment
-import GroupsManagmentPage from './app/modules/groupsManagment/views/GroupsManagmentPage';
-import CreateGroup from './app/modules/groupsManagment/views/CreateGroup';
-import Group from './app/modules/groupsManagment/views/GroupPage';
+import GroupsManagmentPage from "./app/modules/groupsManagment/views/GroupsManagmentPage";
+import CreateGroup from "./app/modules/groupsManagment/views/CreateGroup";
+import Group from "./app/modules/groupsManagment/views/GroupPage";
 
 //**** layouts *****
-import Auth from './common/layouts/auth';
-import Index from './common/layouts';
+import Auth from "./common/layouts/auth";
+import Index from "./common/layouts";
 
 //groups managment
-import GroupsLayout from './app/modules/groupsManagment/layouts';
-import GroupsManagmentLayout from './app/modules/groupsManagment/layouts/managment';
-import NoGroupView from './app/modules/groupsManagment/views/NoGroupPage';
+import GroupsLayout from "./app/modules/groupsManagment/layouts";
+import GroupsManagmentLayout from "./app/modules/groupsManagment/layouts/managment";
+import NoGroupView from "./app/modules/groupsManagment/views/NoGroupPage";
+import CreateProject from "./app/modules/groupsManagment/views/CreateProject";
 
 //code game
-import GameLayout from './app/modules/codeGame/layouts/index'
-import LevelLayout from './app/modules/codeGame/layouts/LevelLayout';
+import GameLayout from "./app/modules/codeGame/layouts/index";
+import LevelLayout from "./app/modules/codeGame/layouts/LevelLayout";
 
 //routes validators
-import PrivateRoute from './common/components/PrivateRoute';
+import PrivateRoute from "./common/components/PrivateRoute";
+import Project from "./app/modules/groupsManagment/views/ProjectPage";
+import KanbanPage from "./app/modules/groupsManagment/views/Kanban";
 
 function App() {
   return (
-    <div className='h-screen'>
+    <div className="h-screen">
       <BrowserRouter>
-            <Routes>
-              {/** Routes with default layout */}
-              <Route  element={<Index/>}> 
-                <Route path='/' element={<HomePage/>}/>
-                <Route path='/example' element={<Example/>}/>
-              </Route>
+        <Routes>
+          {/** Routes with default layout */}
+          <Route element={<Index />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/example" element={<Example />} />
+          </Route>
 
-               {/** Auth routes */}
-              <Route  element={<Auth/>}>
-                <Route path='/auth/login' element={<LoginView/>}/>
-                <Route path='/auth/register' element={<LoginView/>}/>
-              </Route>
+          {/** Auth routes */}
+          <Route element={<Auth />}>
+            <Route path="/auth/login" element={<LoginView />} />
+            <Route path="/auth/register" element={<LoginView />} />
+          </Route>
 
-              {/**Group torutes */}
-              <Route element={<PrivateRoute element={<GroupsLayout/>}/>}>
-                <Route path='/groups' element={<GroupsManagmentPage/>}/>
-              </Route>
+          {/**Group torutes */}
+          <Route element={<PrivateRoute element={<GroupsLayout />} />}>
+            <Route path="/groups" element={<GroupsManagmentPage />} />
+          </Route>
 
-              <Route element={<PrivateRoute element = {<GroupsManagmentLayout/>}/>}>
-                <Route path='/groups/add-group' element={<CreateGroup/>}/>
-                <Route path='/groups/edit-group/:groupId' element={<CreateGroup/>}/>
-                <Route path='/groups/list/' element={<NoGroupView/>}/>
-                <Route path='/groups/list/:groupId' element={<Group/>}/>
-              </Route>
+          <Route element={<PrivateRoute element={<GroupsManagmentLayout />} />}>
+            <Route path="/groups/add-group" element={<CreateGroup />} />
+            <Route path="/groups/add-project" element={<CreateProject />} />
+            <Route
+              path="/groups/edit-group/:groupId"
+              element={<CreateGroup />}
+            />
+            <Route
+              path="/groups/edit-project/:projectId"
+              element={<CreateProject />}
+            />
+            <Route path="/groups/list/" element={<NoGroupView />} />
+            <Route path="/groups/list/:groupId" element={<Group />} />
+            <Route path="/groups/project/:projectId" element={<Project />} />
+            <Route
+              path="/groups/project/kanban/:projectId"
+              element={<KanbanPage />}
+            />
+          </Route>
 
-              {/**Game routes */}
-              <Route  element={<PrivateRoute element={<GameLayout/>}/>}>
+          {/**Game routes */}
+          <Route element={<PrivateRoute element={<GameLayout />} />}>
+            <Route path="/games" element={<NoPlayerView />} />
+            <Route path="/games/add-player" element={<CreatePlayer />} />
+            <Route
+              path="/games/edit-player/:playerId"
+              element={<CreatePlayer />}
+            />
+            <Route path="/game/:playerId" element={<GamePage />} />
+          </Route>
+          <Route element={<PrivateRoute element={<LevelLayout />} />}>
+            <Route path="/game/:playerId/level/1" element={<Level1 />} />
+          </Route>
 
-                <Route path='/games' element={<NoPlayerView/>}/>
-                <Route path='/games/add-player' element={<CreatePlayer/>}/>
-                <Route path='/games/edit-player/:playerId' element={<CreatePlayer/>}/>
-                <Route path='/game/:playerId' element={<GamePage/>}/>
-
-              </Route>
-              <Route  element={<PrivateRoute element={<LevelLayout/>}/>}>
-                <Route path='/game/:playerId/level/1' element={<Level1/>}/>
-              </Route>
-              
-              {/** Page 404 */}
-              <Route path='*' element={<NotFound />}/>
-
-            </Routes>
+          {/** Page 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
