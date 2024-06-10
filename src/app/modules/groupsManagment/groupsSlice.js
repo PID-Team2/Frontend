@@ -23,7 +23,7 @@ export const getGroups = createAsyncThunk("groups/getGroups", async (user) => {
   } catch (error) {
     // Manejo del error, si es necesario
     toast.error(
-      error.response.data.message || "Unknown error getting groups 🥲",
+      error.response.data.message || "Ups hay un error creando grupo, cierra los ojos e ignora 🥲",
       { position: "bottom-center", hideProgressBar: true, autoClose: 2000 }
     );
 
@@ -38,7 +38,7 @@ export const getGroupData = createAsyncThunk("groups/getGroup", async (id) => {
   } catch (error) {
     // Manejo del error, si es necesario
     toast.error(
-      error.response.data.message || "Unknown error getting group 🥲",
+      error.response.data.message || "Ups hay un error creando grupo, cierra los ojos e ignora 🥲",
       { position: "bottom-center", hideProgressBar: true, autoClose: 2000 }
     );
 
@@ -60,7 +60,7 @@ export const addNewGroup = createAsyncThunk(
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", {
+      toast.error(error.response.data.message || "Ups hay un error, cierra los ojos e ignora 🥲", {
         position: "bottom-center",
         hideProgressBar: true,
         autoClose: 2000,
@@ -82,7 +82,7 @@ export const editGroup = createAsyncThunk("groups/editGroup", async (data) => {
     return response;
   } catch (error) {
     // Manejo del error, si es necesario
-    toast.error(error.response.data.message || "Unknown error 🥲", {
+    toast.error(error.response.data.message || "Ups hay un error, cierra los ojos e ignora 🥲", {
       position: "bottom-center",
       hideProgressBar: true,
       autoClose: 2000,
@@ -97,7 +97,7 @@ export const inviteUser = createAsyncThunk(
     try {
       const response = await addUserToGroup(data);
 
-      toast.success("User added successfully!", {
+      toast.success("Integrante satistactoriamente añadido!", {
         position: "bottom-center",
         hideProgressBar: true,
         autoClose: 2000,
@@ -105,7 +105,7 @@ export const inviteUser = createAsyncThunk(
       return response;
     } catch (error) {
       // Manejo del error, si es necesario
-      toast.error(error.response.data.message || "Unknown error 🥲", {
+      toast.error(error.response.data.message || "Ups hay un error, cierra los ojos e ignora 🥲", {
         position: "bottom-center",
         hideProgressBar: true,
         autoClose: 2000,

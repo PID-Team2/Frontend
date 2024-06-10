@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
             if(isRegister) response = await signup(data);
             else response = await signin(data);
             
-            toast.success("Welcome "+(isRegister? '':'back '+response.username)+"!", 
+            toast.success("Bienvenido "+(isRegister? '':'a StackOverFlowUCI '+response.username)+"!", 
             {position: "bottom-center", hideProgressBar: true, autoClose: 2000});
             return response;
           } catch (error) {

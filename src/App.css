@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  font-family: 'Fira Code', monospace;
+  font-family: 'Montserrat', monospace;
 }
 
 .App-logo {
@@ -25,7 +25,7 @@
 
 .App-link {
   color: rgb(112, 76, 182);
-  font-family: 'Source Code Pro', monospace;
+  font-family: 'Montserrat', monospace;
 }
 
 @keyframes App-logo-float {

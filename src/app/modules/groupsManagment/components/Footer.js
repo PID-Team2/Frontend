@@ -20,7 +20,7 @@ export default function FooterSmall(props) {
                   href="#"
                   className="text-white hover:text-gray-300 text-sm font-semibold py-1"
                 >
-                  Team UCI
+                  Enielys HR
                 </a>
               </div>
             </div>
@@ -31,7 +31,7 @@ export default function FooterSmall(props) {
                     href="#"
                     className="text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
                   >
-                    Team UCI
+                    Enielys HR
                   </a>
                 </li>
                 <li>
@@ -39,7 +39,7 @@ export default function FooterSmall(props) {
                     href="#"
                     className="text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
                   >
-                    About Us
+                    Sobre nosotros
                   </a>
                 </li>
                 <li>
@@ -55,7 +55,7 @@ export default function FooterSmall(props) {
                     href="#"
                     className="text-white hover:text-gray-300 text-sm font-semibold block py-1 px-3"
                   >
-                    License
+                    Licencia
                   </a>
                 </li>
               </ul>

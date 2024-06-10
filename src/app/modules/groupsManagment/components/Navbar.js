@@ -39,7 +39,7 @@ const handleLogOut = () => {
                                 className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
                                 onClick={() => setNavbarOpen(!navbarOpen)}
                             >
-                                <span className="sr-only">Open main menu</span>
+                                <span className="sr-only">Abrir menú principal</span>
                                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                             </button>
                         </div>
@@ -57,7 +57,7 @@ const handleLogOut = () => {
                                     className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                                     to="/groups/list"
                                 >
-                                    Teams & Projects
+                                    Grupos & Proyectos
                                 </Link>
                             </li>
 

@@ -37,7 +37,7 @@ export default function AccountDropdown({username, onLogout}) {
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Account settings
+                  Configuración de la cuenta
                 </a>
               )}
             </Menu.Item>
@@ -51,7 +51,7 @@ export default function AccountDropdown({username, onLogout}) {
                     )}
                     onClick={onLogout}
                   >
-                    Sign out
+                    Cerrar sesión
                   </button>
                 )}
               </Menu.Item>

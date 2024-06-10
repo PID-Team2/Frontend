@@ -58,7 +58,7 @@ export default function Sidebar() {
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
               onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">Ábrir menú principal</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
@@ -66,7 +66,7 @@ export default function Sidebar() {
             className="md:block text-left md:pb-2 text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             to="/groups"
           >
-            Groups Managment
+            Gestionar Grupos
           </Link>
           <div
             className={
@@ -82,7 +82,7 @@ export default function Sidebar() {
                     className="md:block text-left md:pb-2 text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     to="/groups"
                   >
-                    Home
+                    Inicio
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -111,12 +111,12 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-zinc-400 text-xs uppercase font-bold block pt-1 pb-4 no-underline flex justify-between items-center">
-              Your Teams
+              Tu grupo
               <Link
                 to="/groups/add-group"
                 className="bg-amber-400 text-zinc-800 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
               >
-                + New
+                + Add
               </Link>
             </h6>
             {/* Teams */}
@@ -150,9 +150,9 @@ export default function Sidebar() {
                   </li>
                 ))
               ) : groupData.state == "loading" ? (
-                <span className="text-zinc-600">Loading...</span>
+                <span className="text-zinc-600">Cargando vista, porfavor espere unos segundos...</span>
               ) : (
-                <span className="text-zinc-600">No teams created yet..</span>
+                <span className="text-zinc-600">No hay grupos creados aún..</span>
               )}
             </ul>
 
@@ -160,12 +160,12 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-zinc-400 text-xs uppercase font-bold block pt-1 pb-4 no-underline flex justify-between items-center">
-              Your Projects
+              Tus proyectos
               <Link
                 to="/groups/add-project"
                 className="bg-amber-400 text-zinc-800 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
               >
-                + New
+                + Add
               </Link>
             </h6>
             {/* Projects */}
@@ -189,9 +189,9 @@ export default function Sidebar() {
                   </li>
                 ))
               ) : groupData.state == "loading" ? (
-                <span className="text-zinc-600">Loading...</span>
+                <span className="text-zinc-600">Cargando vista, porfavor espere unos segundos...</span>
               ) : (
-                <span className="text-zinc-600">No teams created yet..</span>
+                <span className="text-zinc-600">No hay grupos creados aún..</span>
               )}
             </ul>
           </div>

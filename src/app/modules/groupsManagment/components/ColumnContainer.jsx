@@ -171,7 +171,7 @@ function ColumnContainer({
         }}
       >
         <PlusIcon />
-        Add task
+        Agregar tarea
       </button>
     </div>
   );

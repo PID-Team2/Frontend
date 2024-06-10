@@ -13,7 +13,7 @@ export default function KanbanPage() {
     <>
       <div className="grid min-h-screen bg-zinc-850 px-6 py-4 lg:px-8 relative overflow-auto">
         <div className="mt-20 flex justify-center text-white text-xl">
-          Project {project && project.title}{" "}
+          Proyectos {project && project.title}{" "}
         </div>
         <KanbanBoard />
       </div>

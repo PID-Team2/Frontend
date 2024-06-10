@@ -22,11 +22,11 @@ const defaultCols = [
   },
   {
     id: "doing",
-    title: "Work in progress",
+    title: "Por hacer",
   },
   {
     id: "done",
-    title: "Done",
+    title: "Listo",
   },
 ];
 
@@ -45,7 +45,7 @@ const defaultTasks = [
   {
     id: "3",
     columnId: "doing",
-    content: "Conduct security testing",
+    content: "Proyecto ICI",
   },
   {
     id: "4",
@@ -80,12 +80,12 @@ const defaultTasks = [
   {
     id: "10",
     columnId: "todo",
-    content: "Design database schema",
+    content: "Proyecto GPN",
   },
   {
     id: "11",
     columnId: "todo",
-    content: "Integrate SSL web certificates into workflow",
+    content: "Seminario Final de Calculo",
   },
   {
     id: "12",
@@ -213,7 +213,7 @@ function KanbanBoard() {
     const newTask = {
       id: generateId(),
       columnId,
-      content: `Task ${tasks.length + 1}`,
+      content: `Tarea ${tasks.length + 1}`,
     };
 
     setTasks([...tasks, newTask]);
@@ -236,7 +236,7 @@ function KanbanBoard() {
   function createNewColumn() {
     const columnToAdd = {
       id: generateId(),
-      title: `Column ${columns.length + 1}`,
+      title: `Columna ${columns.length + 1}`,
     };
 
     setColumns([...columns, columnToAdd]);

@@ -91,7 +91,7 @@ export default function Group() {
                           {person.username}
                         </h3>
                         <p className="text-sm font-semibold leading-6 text-amber-400">
-                          No Role
+                          Invitado
                         </p>
                       </div>
                     </div>
@@ -107,10 +107,10 @@ export default function Group() {
                   </div>
                   <div>
                     <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-300">
-                      Add member
+                      Añade miembros
                     </h3>
                     <p className="text-sm font-semibold leading-6 text-amber-400">
-                      Invite a new colaborator
+                      Invita a un colaborador
                     </p>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function Group() {
                       {({ open }) => (
                         <>
                           <Listbox.Label className="block text-sm font-medium leading-6 text-gray-300">
-                            Invite user
+                            Invitar integrante
                           </Listbox.Label>
                           <div className="relative mt-2">
                             <Listbox.Button className="relative w-full cursor-default rounded-md bg-zinc-600 py-1.5 pl-3 pr-10 text-left text-gray-100 shadow-sm ring-1 ring-inset ring-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-400 sm:text-sm sm:leading-6">
@@ -137,7 +137,7 @@ export default function Group() {
                                 <span className="ml-3 block truncate">
                                   {selected
                                     ? selected.username
-                                    : "Search an user..."}
+                                    : "Buscar intengrantes..."}
                                 </span>
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -227,7 +227,7 @@ export default function Group() {
                     className="bg-amber-400 text-zinc-800 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2.5 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   >
                     {" "}
-                    Invite
+                    Invitar
                   </button>
                 </li>
               )}

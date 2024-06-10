@@ -11,22 +11,26 @@ export default function GroupsManagmentPage() {
         <header className="m-0 flex justify-center px-10">
           <div className='home-title flex flex-col justify-center text-center'>
             <h1 className='text-3xl md:text-4xl lg:text-6xl text-center mb-8'>
-                Manage your team
+              Gestiona tu espacio
             </h1>
-            <h2 className='text-xl md:text-2xl lg:text-3xl text-center'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            <h2 className='text-xl md:text-2xl lg:text-3xl text-center px-24'>
+              
+              
+              En equipo, transformamos líneas de código en soluciones innovadoras y desafiamos los límites de lo posible.
+            </h2>
           </div>
         </header>
       </div>
       </main>
       <section className="bg-white min-h-screen text-zinc-850  pt-4">
-      <div className="container mx-auto px-4 lg:pt-24 text-zinc-850">
+      <div className="container mx-auto px-4 lg:pt-24 text-zinc-850 pb-20">
             <div className="flex flex-wrap text-center justify-center">
               <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold text-zinc-850">
-                  What you can do?
+                ¿Qué podrás hacer?
                 </h2>
-                <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400">
-                Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Sed arcu non odio euismod lacinia at quis risus. Odio ut sem nulla pharetra.
+                <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400 px-8">
+                StackOverFlowUCI, es una plataforma donde podrás crear o unirte a grupos de trabajo colaborativo de diferentes materias que se imparten en la Universidad, iniciar nuevos proyectos, coordinar tareas y controlar las versiones de tus proyectos de manera eficiente y efectiva. Con nuestras herramientas integradas, podrás potenciar la colaboración, la creatividad y el éxito en tus iniciativas, ya sea en el ámbito de la programación u otras disciplinas.
                 </p>
               </div>
             </div>
@@ -36,10 +40,10 @@ export default function GroupsManagmentPage() {
                   <UserGroupIcon/>
                 </Link>
                 <h6 className="text-xl mt-5 font-semibold">
-                  Create a team
+                  Crear Grupos
                 </h6>
                 <p className="mt-2 mb-4 text-blueGray-400">
-                In eu mi bibendum neque egestas congue quisque egestas. Viverra maecenas accumsan lacus vel facilisis volutpat est velit egestas. Auctor augue mauris augue neque
+                En nuestra plataforma, puedes formar grupos de trabajo colaborativo donde los miembros puedan compartir ideas, resolver problemas y avanzar juntos hacia objetivos comunes.
                 </p>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
@@ -47,10 +51,10 @@ export default function GroupsManagmentPage() {
                   <BriefcaseIcon/>
                 </Link>
                 <h5 className="text-xl mt-5 font-semibold">
-                  Start a project
+                  Crear o unirte a proyectos
                 </h5>
                 <p className="mt-2 mb-4 text-blueGray-400">
-                Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Sed arcu non odio euismod lacinia at quis risus. Odio ut sem nulla pharetra.
+                Con nuestra plataforma, puedes iniciar nuevos proyectos o unirte a ellos y coordinar el trabajo de equipo de manera eficiente y efectiva. 
                 </p>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
@@ -58,10 +62,10 @@ export default function GroupsManagmentPage() {
                 <WrenchScrewdriverIcon/>
                 </Link>
                 <h5 className="text-xl mt-5 font-semibold">
-                  Version control
+                  Controlar las versiones de tu proyecto
                 </h5>
                 <p className="mt-2 mb-4 text-blueGray-400">
-                Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Sed arcu non odio euismod lacinia at quis risus. Odio ut sem nulla pharetra.
+                Nuestra plataforma te permite gestionar y controlar las versiones de tus proyectos, facilitando la colaboración y garantizando la integridad del trabajo realizado.
                 </p>
               </div>
             </div>

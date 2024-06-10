@@ -60,7 +60,7 @@ export default function Navbar() {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">Abrir menú principal</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
@@ -122,10 +122,10 @@ export default function Navbar() {
           {authData.user &&
             <>
               <Link to="/groups" className="text-sm font-semibold leading-6 ">
-              Grops Managment
+              Gestionar grupo
               </Link>
               <Link to="/games" className="text-sm font-semibold leading-6 ">
-              Games
+              Juegos
               </Link>
             </>
           }
@@ -135,7 +135,7 @@ export default function Navbar() {
              ? <AccountDropdown username={authData.user.username} onLogout={handleLogOut}/>
              
              : <Link to = "/auth/login" className="text-sm font-semibold leading-6 ">
-                Log in <span aria-hidden="true">&rarr;</span>
+                Inicia sesión <span aria-hidden="true">&rarr;</span>
               </Link>
             }
         </div>
@@ -145,7 +145,7 @@ export default function Navbar() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-zinc-850 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">Empresa</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -157,7 +157,7 @@ export default function Navbar() {
               className="-m-2.5 rounded-md p-2.5 text-gray-100"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
+              <span className="sr-only">Cerrar menú</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
@@ -193,33 +193,33 @@ export default function Navbar() {
                   to="/example"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
                 >
-                  Example Module
+                  Módulos de ejemplo
                 </Link>
                 <Link
                   to="/groups"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
                 >
-                  Groups Managment
+                  Gestionar grupo
                 </Link>
                 <Link
                   to="/games"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
                 >
-                  Games
+                  Juegos
                 </Link>
               </div>
               <div className="py-6">
                 {authData.user 
                   ? <div>
                     <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800 flex align-center"><UserCircleIcon className="h-6 w-6 mr-1" aria-hidden="true" />{authData.user.username}</span>
-                    <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800 flex align-center">Account settings</span>
-                    <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800 flex align-center" onClick={handleLogOut}>Sign out</span>
+                    <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800 flex align-center">Configuración de la cuenta</span>
+                    <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800 flex align-center" onClick={handleLogOut}>Cerrar sesión</span>
                   </div>
                   : <Link
                       to="/auth/login"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-100 hover:bg-neutral-800"
                     >
-                      Log in
+                      Inicia sesión
                     </Link>
                 }
 
