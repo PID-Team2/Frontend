@@ -3,10 +3,7 @@ import { useMemo, useState } from "react";
 import ColumnContainer from "./ColumnContainer";
 import {
   DndContext,
-  DragEndEvent,
-  DragOverEvent,
   DragOverlay,
-  DragStartEvent,
   PointerSensor,
   useSensor,
   useSensors,
@@ -14,6 +11,9 @@ import {
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
+import { useSelector } from "react-redux";
+import {  useParams } from "react-router-dom";
+import { selectProjectById } from "../projectSlice";
 
 const defaultCols = [
   {
@@ -36,70 +36,24 @@ const defaultTasks = [
     columnId: "todo",
     content: "List admin APIs for dashboard",
   },
-  {
-    id: "2",
-    columnId: "todo",
-    content:
-      "Develop user registration functionality with OTP delivered on SMS after email confirmation and phone number confirmation",
-  },
+  
   {
     id: "3",
     columnId: "doing",
     content: "Proyecto ICI",
   },
-  {
-    id: "4",
-    columnId: "doing",
-    content: "Analyze competitors",
-  },
+  
   {
     id: "5",
     columnId: "done",
     content: "Create UI kit documentation",
   },
-  {
-    id: "6",
-    columnId: "done",
-    content: "Dev meeting",
-  },
-  {
-    id: "7",
-    columnId: "done",
-    content: "Deliver dashboard prototype",
-  },
-  {
-    id: "8",
-    columnId: "todo",
-    content: "Optimize application performance",
-  },
-  {
-    id: "9",
-    columnId: "todo",
-    content: "Implement data validation",
-  },
-  {
-    id: "10",
-    columnId: "todo",
-    content: "Proyecto GPN",
-  },
-  {
-    id: "11",
-    columnId: "todo",
-    content: "Seminario Final de Calculo",
-  },
-  {
-    id: "12",
-    columnId: "doing",
-    content: "Implement error logging and monitoring",
-  },
-  {
-    id: "13",
-    columnId: "doing",
-    content: "Design and implement responsive UI",
-  },
+  
+ 
 ];
 
-function KanbanBoard() {
+function KanbanBoard({project}) {
+
   const [columns, setColumns] = useState(defaultCols);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
 
@@ -148,6 +102,7 @@ function KanbanBoard() {
                   deleteTask={deleteTask}
                   updateTask={updateTask}
                   tasks={tasks.filter((task) => task.columnId === col.id)}
+                  project= {project}
                 />
               ))}
             </SortableContext>

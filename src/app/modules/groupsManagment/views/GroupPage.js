@@ -53,8 +53,22 @@ export default function Group() {
       <div className="grid min-h-screen bg-zinc-850 px-6 py-4 lg:px-8 relative">
         <div className="bg-zinc-850 py-8 sm:py-32 px-4 md:px-5">
           <div className="text-center mb-8">
-            <Link to={`/groups/edit-group/${group.id}`}>
-              <h2 className="text-3xl font-bold text-white sm:text-4xl flex justify-center gap-2 items-center hover:text-amber-300 hover:cursor-pointer">
+            {group.user.id == authData.user.id ? (
+              <Link to={`/groups/edit-group/${group.id}`}>
+                <h2 className="text-3xl font-bold text-white sm:text-4xl flex justify-center gap-2 items-center hover:text-amber-300 hover:cursor-pointer">
+                  <img
+                    src={`https://www.gravatar.com/avatar/${md5(
+                      group.title
+                    )}?d=retro&f=y&s=128/`}
+                    alt="person"
+                    className="h-12 w-12 flex-shrink-0 rounded-full mr-3"
+                  />
+                  {group && group.title}
+                  <PencilIcon className="ml-2 h-7" />
+                </h2>
+              </Link>
+            ) : (
+              <h2 className="text-3xl font-bold text-white sm:text-4xl flex justify-center gap-2 items-center ">
                 <img
                   src={`https://www.gravatar.com/avatar/${md5(
                     group.title
@@ -63,9 +77,8 @@ export default function Group() {
                   className="h-12 w-12 flex-shrink-0 rounded-full mr-3"
                 />
                 {group && group.title}
-                <PencilIcon className="ml-2 h-7" />
               </h2>
-            </Link>
+            )}
             <p className="mt-6 text-lg leading-8 text-gray-300">
               {group ? group.description : "404"}
             </p>
@@ -75,6 +88,27 @@ export default function Group() {
               role="list"
               className="grid gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16 xl:col-span-2"
             >
+              {group && (
+                <li>
+                  <div className="flex items-center gap-x-6">
+                    <div className="max-h-16 max-w-16 rounded-full bg-zinc-700">
+                      <img
+                        className="h-16 w-16 rounded-full"
+                        src={`https://api.multiavatar.com/${group.user.username}.png`}
+                        alt={group.user.username}
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-300">
+                        {group.user.username}
+                      </h3>
+                      <p className="text-sm font-semibold leading-6 text-amber-400">
+                        Admin
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              )}
               {group &&
                 group.users.map((person) => (
                   <li key={person.id}>
@@ -97,24 +131,26 @@ export default function Group() {
                     </div>
                   </li>
                 ))}
-              <li>
-                <div className="flex items-center gap-x-6">
-                  <div
-                    onClick={() => setShowSelect(true)}
-                    className="h-16 w-16 rounded-full bg-amber-400 flex justify-center items-center text-white cursor-pointer"
-                  >
-                    <UserPlusIcon className="h-1/2" />
+              {group.user.id == authData.user.id && (
+                <li>
+                  <div className="flex items-center gap-x-6">
+                    <div
+                      onClick={() => setShowSelect(true)}
+                      className="h-16 w-16 rounded-full bg-amber-400 flex justify-center items-center text-white cursor-pointer"
+                    >
+                      <UserPlusIcon className="h-1/2" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-300">
+                        Añade miembros
+                      </h3>
+                      <p className="text-sm font-semibold leading-6 text-amber-400">
+                        Invita a un colaborador
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-300">
-                      Añade miembros
-                    </h3>
-                    <p className="text-sm font-semibold leading-6 text-amber-400">
-                      Invita a un colaborador
-                    </p>
-                  </div>
-                </div>
-              </li>
+                </li>
+              )}
               {showSelect && (
                 <li className="flex items-end">
                   <div className="w-2/3">

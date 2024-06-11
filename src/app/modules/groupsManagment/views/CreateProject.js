@@ -62,6 +62,7 @@ export default function CreateProject() {
       const data = {
         project: project,
         user: authData.user,
+        group: selected,
       };
       if (projectToEdit) {
         const dataToEdit = {
@@ -166,7 +167,7 @@ export default function CreateProject() {
                         {({ open }) => (
                           <>
                             <Listbox.Label className="block text-sm font-medium leading-6 text-gray-300">
-                              Añadir integrantes al grupo
+                              Añadir grupo
                             </Listbox.Label>
                             <div className="relative mt-2">
                               <Listbox.Button className="relative w-full cursor-default rounded-md bg-zinc-600 py-1.5 pl-3 pr-10 text-left text-gray-100 shadow-sm ring-1 ring-inset ring-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-400 sm:text-sm sm:leading-6">
@@ -202,60 +203,64 @@ export default function CreateProject() {
                                 leaveTo="opacity-0"
                               >
                                 <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-zinc-600 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                  {groupData.groups.map((team) => (
-                                    <Listbox.Option
-                                      key={team.id}
-                                      className={({ active }) =>
-                                        classNames(
-                                          active
-                                            ? "bg-amber-400 text-white"
-                                            : "text-gray-300",
-                                          "relative cursor-default select-none py-2 pl-3 pr-9"
-                                        )
-                                      }
-                                      value={team}
-                                    >
-                                      {({ selected, active }) => (
-                                        <>
-                                          <div className="flex items-center">
-                                            <img
-                                              src={`https://www.gravatar.com/avatar/${md5(
-                                                team.title
-                                              )}?d=retro&f=y&s=128`}
-                                              alt="person"
-                                              className="h-5 w-5 flex-shrink-0 rounded-full"
-                                            />
-                                            <span
-                                              className={classNames(
-                                                selected
-                                                  ? "font-semibold"
-                                                  : "font-normal",
-                                                "ml-3 block truncate"
-                                              )}
-                                            >
-                                              {team.title}
-                                            </span>
-                                          </div>
-
-                                          {selected ? (
-                                            <span
-                                              className={classNames(
-                                                active
-                                                  ? "text-white"
-                                                  : "text-amber-400",
-                                                "absolute inset-y-0 right-0 flex items-center pr-4"
-                                              )}
-                                            >
-                                              <CheckIcon
-                                                className="h-5 w-5"
-                                                aria-hidden="true"
+                                  {groupData.groups
+                                    ?.filter(
+                                      (it) => it.user.id == authData.user.id
+                                    )
+                                    .map((team) => (
+                                      <Listbox.Option
+                                        key={team.id}
+                                        className={({ active }) =>
+                                          classNames(
+                                            active
+                                              ? "bg-amber-400 text-white"
+                                              : "text-gray-300",
+                                            "relative cursor-default select-none py-2 pl-3 pr-9"
+                                          )
+                                        }
+                                        value={team}
+                                      >
+                                        {({ selected, active }) => (
+                                          <>
+                                            <div className="flex items-center">
+                                              <img
+                                                src={`https://www.gravatar.com/avatar/${md5(
+                                                  team.title
+                                                )}?d=retro&f=y&s=128`}
+                                                alt="person"
+                                                className="h-5 w-5 flex-shrink-0 rounded-full"
                                               />
-                                            </span>
-                                          ) : null}
-                                        </>
-                                      )}
-                                    </Listbox.Option>
-                                  ))}
+                                              <span
+                                                className={classNames(
+                                                  selected
+                                                    ? "font-semibold"
+                                                    : "font-normal",
+                                                  "ml-3 block truncate"
+                                                )}
+                                              >
+                                                {team.title}
+                                              </span>
+                                            </div>
+
+                                            {selected ? (
+                                              <span
+                                                className={classNames(
+                                                  active
+                                                    ? "text-white"
+                                                    : "text-amber-400",
+                                                  "absolute inset-y-0 right-0 flex items-center pr-4"
+                                                )}
+                                              >
+                                                <CheckIcon
+                                                  className="h-5 w-5"
+                                                  aria-hidden="true"
+                                                />
+                                              </span>
+                                            ) : null}
+                                          </>
+                                        )}
+                                      </Listbox.Option>
+                                    ))}
                                 </Listbox.Options>
                               </Transition>
                             </div>

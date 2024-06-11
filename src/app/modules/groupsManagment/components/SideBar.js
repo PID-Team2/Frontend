@@ -111,7 +111,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-zinc-400 text-xs uppercase font-bold block pt-1 pb-4 no-underline flex justify-between items-center">
-              Tu grupo
+              Tus grupos
               <Link
                 to="/groups/add-group"
                 className="bg-amber-400 text-zinc-800 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
@@ -143,16 +143,22 @@ export default function Sidebar() {
                         {team.title}
                       </span>
                     </Link>
-                    <TrashIcon
-                      onClick={() => handleDelete(team)}
-                      className="h-4 w-4 text-white hover:text-amber-400 cursor-pinter"
-                    />
+                    {team.user.id == authData.user.id && (
+                      <TrashIcon
+                        onClick={() => handleDelete(team)}
+                        className="h-4 w-4 text-white hover:text-amber-400 cursor-pinter"
+                      />
+                    )}
                   </li>
                 ))
               ) : groupData.state == "loading" ? (
-                <span className="text-zinc-600">Cargando vista, porfavor espere unos segundos...</span>
+                <span className="text-zinc-600">
+                  Cargando vista, porfavor espere unos segundos...
+                </span>
               ) : (
-                <span className="text-zinc-600">No hay grupos creados aún..</span>
+                <span className="text-zinc-600">
+                  No hay grupos creados aún..
+                </span>
               )}
             </ul>
 
@@ -182,16 +188,22 @@ export default function Sidebar() {
                     >
                       {project.title}
                     </Link>
-                    <TrashIcon
-                      onClick={() => handleDeleteProject(project)}
-                      className="h-4 w-4 text-white hover:text-amber-400 cursor-pinter"
-                    />
+                    {project.group.userAdminId == authData.user.id && (
+                      <TrashIcon
+                        onClick={() => handleDeleteProject(project)}
+                        className="h-4 w-4 text-white hover:text-amber-400 cursor-pinter"
+                      />
+                    )}
                   </li>
                 ))
               ) : groupData.state == "loading" ? (
-                <span className="text-zinc-600">Cargando vista, porfavor espere unos segundos...</span>
+                <span className="text-zinc-600">
+                  Cargando vista, porfavor espere unos segundos...
+                </span>
               ) : (
-                <span className="text-zinc-600">No hay grupos creados aún..</span>
+                <span className="text-zinc-600">
+                  No hay grupos creados aún..
+                </span>
               )}
             </ul>
           </div>

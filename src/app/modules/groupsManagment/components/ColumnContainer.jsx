@@ -13,6 +13,7 @@ function ColumnContainer({
   tasks,
   deleteTask,
   updateTask,
+  project
 }) {
   const [editMode, setEditMode] = useState(false);
 
@@ -49,7 +50,7 @@ function ColumnContainer({
         className="
             bg-zinc-800
             opacity-40
-            border-2
+            border-0
             border-primary
             text-white
             w-[350px]
@@ -85,7 +86,7 @@ function ColumnContainer({
           setEditMode(true);
         }}
         className="
-                bg-mainBackgroundColor
+                bg-zinc-700
                 text-md
                 h-[60px]
                 cursor-grab
@@ -93,8 +94,8 @@ function ColumnContainer({
                 rounded-b-none
                 p-3
                 font-bold
-                border-columnBackgroundColor
-                border-2
+                border-zinc-700
+                border-0
                 flex
                 items-center
                 justify-between
@@ -159,13 +160,14 @@ function ColumnContainer({
               task={task}
               deleteTask={deleteTask}
               updateTask={updateTask}
+              project= {project}
             />
           ))}
         </SortableContext>
       </div>
       {/* Column footer */}
       <button
-        className="flex gap-2 text-white items-center border-columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-amber-400 active:bg-black"
+        className="flex gap-2 text-white items-center border-zinc-700 border-2 rounded-md p-4 border-x-zinc-700 hover:bg-mainBackgroundColor hover:text-amber-400 active:bg-black"
         onClick={() => {
           createTask(column.id);
         }}

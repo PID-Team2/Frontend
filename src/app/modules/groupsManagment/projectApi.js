@@ -41,6 +41,18 @@ export async function createProject(data) {
     );
 
     if (response.status === 200) {
+      data?.group?.users.forEach(async (it) => {
+        const membersRes = await axios.post(
+          process.env.REACT_APP_API_URL + "member/",
+          {
+            projectRole: "",
+            userId: it.id,
+            projectId: response.data.id,
+          },
+          config
+        );
+        console.log(membersRes);
+      });
       const responseData = await axios.get(
         process.env.REACT_APP_API_URL + "project/"
       );

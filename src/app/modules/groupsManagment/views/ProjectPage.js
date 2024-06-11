@@ -44,30 +44,33 @@ export default function Project() {
             <p className="mt-6  text-lg leading-8 text-gray-300">
               Description: {project ? project.description : "404"}
             </p>
-            <div className="text-white text-md mb-6">
+            <div className=" text-md mb-6 text-amber-400 mt-2">
               Team: {groupData && groupData.title}
             </div>
             {/* /groups/project/kanban/ */}
-            <div className="text-white text-md mb-6">
-              <Link to={`/groups/project/kanban/${project.id}`}>
+            <div className="text-white flex text-md mb-6">
+              <Link
+                className=" flex max-w-xs justify-center rounded-md bg-amber-400 px-8 py-2 text-sm font-semibold text-white hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+                to={`/groups/project/kanban/${project.id}`}
+              >
                 Go to kanban
               </Link>
             </div>
             <ul role="list" className="flex flex-wrap gap-5">
               {groupData &&
-                groupData.users.map((person) => (
-                  <li key={person.id}>
+                project.members.map((person) => (
+                  <li key={person.user.id}>
                     <div className="flex items-center gap-x-2">
                       <div className="max-h-10 max-w-10 rounded-full bg-zinc-700">
                         <img
                           className="h-10 w-10 rounded-full"
-                          src={`https://api.multiavatar.com/${person.username}.png`}
-                          alt={person.username}
+                          src={`https://api.multiavatar.com/${person.user.username}.png`}
+                          alt={person.user.username}
                         />
                       </div>
                       <div>
                         <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-300">
-                          {person.username}
+                          {person.user.username}
                         </h3>
                         <p className="text-sm font-semibold leading-6 text-amber-400 flex items-center">
                           Set Role <PencilIcon className="ml-2 h-3" />
